@@ -11,25 +11,33 @@ import {AllArtistsComponent} from "./modules/layout/all-artists/all-artists.comp
 import {SongsComponent} from "./modules/layout/songs/songs.component";
 import {PlaylistComponent} from "./modules/layout/playlist/playlist.component";
 import {TokenGuard} from "./guards/token.guard";
+import {LayoutComponent} from "./modules/layout/layout.component";
 
 const routes: Routes = [
+  {path: "", redirectTo: MyRoutes.Welcome, pathMatch: 'full'},
+  {path: MyRoutes.Login, component: LoginComponent},
+  {path: MyRoutes.Register, component: RegisterComponent},
+  {path: MyRoutes.Welcome, component: WelcomeComponent},
   {
     path: "",
     canActivate: [TokenGuard],
     canActivateChild: [TokenGuard],
     children: [
-      {path: MyRoutes.Artists, component: AllArtistsComponent},
-      {path: MyRoutes.Songs, component: SongsComponent},
-      {path: MyRoutes.Playlists, component: PlaylistComponent},
-      {path: MyRoutes.Home, component: HomeComponent},
+      {
+        path: "",
+        component: LayoutComponent,
+        children: [
+          {path: MyRoutes.Artists, component: AllArtistsComponent},
+          {path: MyRoutes.Songs, component: SongsComponent},
+          {path: MyRoutes.Playlists, component: PlaylistComponent},
+          {path: MyRoutes.Home, component: HomeComponent},
+          {path: MyRoutes.Profile, component: ProfileComponent},
+        ]
+      },
       {path: MyRoutes.Admin, component: AdminComponent},
-      {path: MyRoutes.Profile, component: ProfileComponent},
+
     ]
   },
-  {path: MyRoutes.Login, component: LoginComponent},
-  {path: MyRoutes.Register, component: RegisterComponent},
-  {path: MyRoutes.Welcome, component: WelcomeComponent},
-  {path: "", redirectTo: MyRoutes.Welcome, pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -2,10 +2,12 @@ package com.web.backend.config;
 
 import com.web.backend.security.JwtAuthEntryPoint;
 import com.web.backend.security.JwtAuthTokenFilter;
+import com.web.backend.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,10 +31,21 @@ public class WebSecurityConfig {
 
     private final JwtAuthEntryPoint unauthorizedHandler;
     private final JwtAuthTokenFilter jwtAuthTokenFilter;
+    private final UserDetailsServiceImpl userDetailsService;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
     }
 
     @Bean
@@ -65,10 +78,9 @@ public class WebSecurityConfig {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests()
-                .requestMatchers("/login", "/test/**").permitAll()
-                .requestMatchers("/*.js", "/favicon.ico", "/**.html").permitAll()
-                .requestMatchers( "/api/v1/auth/**", "/welcome", "/login", "/logout").permitAll()
+                .authorizeRequests()
+                .antMatchers("/*.js", "/favicon.ico", "/**.html").permitAll()
+                .antMatchers( "/api/v1/auth/**", "/welcome", "/login", "/register").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

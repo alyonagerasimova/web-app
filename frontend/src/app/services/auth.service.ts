@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {JwtResponse, UserLogin, UserProfile, UserRegister} from "../modules/types";
+import {JwtResponse, UserLogin, UserRegister} from "../modules/types";
 import {Observable, tap} from "rxjs";
 import {environment} from "../../environments/environment";
 import {TokenService} from "./token.service";
@@ -16,7 +16,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  constructor(private readonly http: HttpClient, private readonly tokenService: TokenService) {}
+  constructor(private readonly http: HttpClient, private readonly tokenService: TokenService) {
+  }
 
   login(credentials: UserLogin): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(AUTH_API + "login", credentials, httpOptions)

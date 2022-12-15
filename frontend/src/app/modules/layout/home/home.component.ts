@@ -5,6 +5,7 @@ import {AuthService} from "../../../services/auth.service";
 import {TokenService} from "../../../services/token.service";
 import {environment} from "../../../../environments/environment";
 import {MyRoutes} from "../../my-routes";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,9 @@ export class HomeComponent implements OnInit {
   songPageUrl: string = "../" + MyRoutes.Songs;
   playlistPageUrl: string = "../" + MyRoutes.Playlists;
 
-  constructor(private homeService: HomeService,  private tokenStorage: TokenService) {
+  constructor(private homeService: HomeService,
+              private tokenStorage: TokenService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -53,6 +56,7 @@ export class HomeComponent implements OnInit {
 
   logout(): void {
     this.tokenStorage.signOut();
+    this.router.navigate([MyRoutes.Root, MyRoutes.Welcome]);
     // if(environment.production){
     //   window.location.href = "";
     // }else {

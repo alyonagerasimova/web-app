@@ -3,7 +3,7 @@ package com.web.backend.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
