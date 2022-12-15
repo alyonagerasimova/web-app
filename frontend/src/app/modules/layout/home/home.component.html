@@ -1,0 +1,65 @@
+<div class="layout">
+  <nav class="sidebar">
+    <div class="logo">
+      MuzLite
+    </div>
+    <div class="sidebar-item" [routerLink]=songPageUrl>Песни</div>
+    <div class="sidebar-item" [routerLink]=artistPageUrl>Артисты</div>
+    <div class="sidebar-item" [routerLink]=playlistPageUrl>Плейлисты</div>
+    <div *ngIf="showAdminBoard">
+      Admin Board
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="header__container">
+      <!--      <div class="header__outlet">-->
+      <!--        <router-outlet name="header-outlet"></router-outlet>-->
+      <!--      </div>-->
+      <div class="auth">
+        <div class="nav-link" routerLink="profile">{{ username }}</div>
+        <button
+          class="auth__button"
+          (click)="logout()"
+          [routerLink]="['/']">
+          Выйти
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-page">
+    <router-outlet></router-outlet>
+    <div class="collections">
+      <div>Песни</div>
+      <ng-container *ngIf="isLoading">
+        <div *ngFor="let song of songsList; index as i;">
+          <div>{{song.songName}}</div>
+          <audio controls>
+            <source [src]="song.source">
+          </audio>
+        </div>
+      </ng-container>
+    </div>
+    <div class="collections">
+      <div>Артисты</div>
+      <ng-container *ngIf="isLoading">
+        <div *ngFor="let artist of artistsList; index as i;">
+          <div>{{artist.artistName}}</div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="collections">
+      <div>Плейлисты</div>
+      <ng-container *ngIf="isLoading">
+        <div *ngFor="let playlist of playlistsList; index as i;">
+          <div>{{playlist.playlistName}}</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>spring-app 2022</p>
+  </footer>
+</div>

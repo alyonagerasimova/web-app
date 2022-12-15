@@ -1,0 +1,5 @@
+<ng-container *ngIf="isLoading">
+  <div *ngFor="let artist of artistsList; index as i;">
+    <div>{{artist.artistName}}</div>
+  </div>
+</ng-container>

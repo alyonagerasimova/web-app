@@ -1,0 +1,57 @@
+<div class="content">
+  <form class="form"
+        [formGroup]="formGroup"
+        (ngSubmit)="f.form.valid && onSubmit()"
+        #f="ngForm"
+        novalidate>
+    <h1 class="form__title">Чтобы продолжить, войдите.</h1>
+
+    <div class="form-group">
+      <input id="name-input" class="form-control form__input" type="text" placeholder="Имя"
+             formControlName="username">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['username'].invalid && formGroup.controls['username'].touched">
+        Введите имя
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input id="password-select" class="form-control form__input" type="password" placeholder="Пароль"
+             formControlName="password">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['password'].invalid && formGroup.controls['password'].touched">
+        Введите пароль
+      </div>
+    </div>
+
+    <div class="block-buttons">
+
+      <button type="button" class="form__button form__button_login"
+              [disabled]="formGroup.invalid"
+              (click)="onSubmit()"
+      >Войти
+      </button>
+
+      <!--          <button type="button" class="form__button form__button_login"-->
+      <!--                  routerLink="/"-->
+      <!--          >Отмена-->
+      <!--          </button>-->
+      <h5 class="form__subtitle">Нет аккаунта?</h5>
+
+      <button class="form__button" type="button"
+              routerLink="/auth/register"
+      >РЕГИСТРАЦИЯ
+      </button>
+    </div>
+  </form>
+  <div class="form__unsubmited"
+       *ngIf="!isLogin && !isLoading">
+    Login failed: {{ errorMessage }}
+  </div>
+  <div *ngIf="isLogin">
+    Logged in as {{ roles }}.
+  </div>
+</div>
+
+
+
