@@ -52,13 +52,20 @@ public class AuthController {
         if (userRepo.existsByEmail(user.getEmail())) {
             return ResponseEntity.badRequest().body("Пользователь с таким email уже существует");
         }
-        UserEntity userEntity = new UserEntity(
-                user.getUsername(),
-                user.getEmail(),
-                encoder.encode(user.getPassword()),
-                Role.ROLE_USER);
-        userRepo.save(userEntity);
-        return ResponseEntity.ok("Пользователь успешно сохранен");
-
+        if (userRepo.findByUsername(user.getUsername()) != null) {
+            return ResponseEntity.badRequest().body("Пользователь с таким username уже существует");
+        }
+        try {
+            UserEntity userEntity = new UserEntity(
+                    user.getUsername(),
+                    user.getEmail(),
+                    encoder.encode(user.getPassword()),
+                    Role.ROLE_USER);
+            userRepo.save(userEntity);
+            return ResponseEntity.ok("Пользователь успешно сохранен");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 }

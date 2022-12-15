@@ -56,7 +56,7 @@ public class WebSecurityConfig {
                 "Authorization"
         ));
         var configurationSource = new UrlBasedCorsConfigurationSource();
-        configurationSource.registerCorsConfiguration("api/v1/**", configuration);
+        configurationSource.registerCorsConfiguration("/api/**", configuration);
         return configurationSource;
     }
 
