@@ -76,10 +76,11 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
+                            <outputDirectory>${project.parent.basedir}/backend/src/main/resources/static
+                            </outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/frontend/dist/learn-frontend/</directory>
+                                    <directory>${project.parent.basedir}/frontend/dist/frontend/</directory>
                                 </resource>
                             </resources>
                         </configuration>

@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Artist, Playlist, Song} from "../../types";
 import {HomeService} from "../../../services/home.service";
-import {AuthService} from "../../../services/auth.service";
 import {TokenService} from "../../../services/token.service";
-import {environment} from "../../../../environments/environment";
 import {MyRoutes} from "../../my-routes";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',

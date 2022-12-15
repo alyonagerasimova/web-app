@@ -3,7 +3,6 @@ package com.web.backend.controller;
 import com.web.backend.BackendApplication;
 import com.web.backend.dto.ArtistDto;
 import com.web.backend.entity.Role;
-import jakarta.transaction.Transactional;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -56,7 +57,8 @@ public class ArtistControllerIntTest {
             }
 
             @Override
-            public void setAuthenticated(boolean b) throws IllegalArgumentException {}
+            public void setAuthenticated(boolean b) throws IllegalArgumentException {
+            }
 
             @Override
             public String getName() {

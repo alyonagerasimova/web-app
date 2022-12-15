@@ -1,1 +1,1 @@
-java -Dserver.port=9000 -jar backend-0.0.1-SNAPSHOT.jar
+java -Dserver.port=9000 -jar backend-1.0-SNAPSHOT.jar
