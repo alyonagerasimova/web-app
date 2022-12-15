@@ -6,6 +6,8 @@ import {AuthService} from "../../../services/auth.service";
 import {TokenService} from "../../../services/token.service";
 import {AuthLoginInfo} from "./AuthLoginInfo";
 import {UserLogin} from "../../types";
+import {catchError, switchMap, throwError} from "rxjs";
+import {MyRoutes} from "../../my-routes";
 
 @Component({
   selector: "app-login.component",
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private authService: AuthService,
-    private tokenStorage: TokenService,
+    private readonly tokenService: TokenService,
     private readonly router: Router) {
   }
 
@@ -37,43 +39,25 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
-      this.isLogin = true;
-      this.roles = this.tokenStorage.getUser().roles;
-      console.log("Get token");
-    }
-  }
-
-  public goBack(): void {
-    this.location.go("/auth");
+    this.tokenService.signOut();
   }
 
   public onSubmit() {
-    const model = this.formGroup.value as UserLogin;
-    this.formGroup.markAsDirty();
-    this.formGroup.updateValueAndValidity();
-    this.user = new AuthLoginInfo(this.formGroup.controls["username"].value, this.formGroup.controls["password"].value);
+    const model = this.formGroup.value;
+    this.user = new AuthLoginInfo(model["username"], model["password"]);
 
     this.authService.login(this.user)
-      .subscribe({
-        next: (data) => {
-          this.tokenStorage.saveToken(data.jwt);
-          this.tokenStorage.saveUser(data);
-          this.isLogin = true;
+      .pipe(
+        switchMap(() => {
+          return this.router.navigate([MyRoutes.Root, MyRoutes.Home]);
+        }),
+        catchError(error => {
           this.isLoading = false;
-          this.roles = this.tokenStorage.getUser().roles;
-          return this.router.navigateByUrl("/home");
-        },
-        error: (error) => {
           this.isLogin = false;
-          this.isLoading = false;
-          this.errorMessage = "Проверьте корректность данных. " + error.message;
-          console.log(this.errorMessage);
-        }
-      });
-  }
-
-  reloadPage(): void {
-    window.location.reload();
+          this.errorMessage = "Проверьте корректность данных!";
+          return throwError(() => error);
+        }),
+      )
+      .subscribe();
   }
 }

@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
 
     this.homeService.getData()
       .subscribe(data => {
+        console.log(data)
         this.songsList = data[0].splice(0, 2);
         this.playlistsList = data[1].splice(0, 2);
         this.artistsList = data[2].splice(0, 2);

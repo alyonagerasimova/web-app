@@ -20,9 +20,8 @@ public class HomeController {
     private final PlaylistService playlistService;
     private final SongService songService;
 
-    @GetMapping
+    @GetMapping(value = "")
     public List<?>[] getData() {
         return new List[]{songService.getSongs(), playlistService.getPlaylists(), artistService.getArtists()};
     }
-
 }

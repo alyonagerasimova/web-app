@@ -1,13 +1,14 @@
 export enum MyRoutes {
   Root = '/',
   Welcome = 'welcome',
-  Login = 'auth/login',
-  Register = 'auth/register',
+  Login = 'login',
+  Register = 'register',
   Home = 'home',
   Profile = 'profile',
   Admin = 'admin',
   Artists = 'artists',
   Songs = 'songs',
   Playlists = 'playlists',
-
+  NotFound = '404',
+  Forbidden = 'forbidden',
 }

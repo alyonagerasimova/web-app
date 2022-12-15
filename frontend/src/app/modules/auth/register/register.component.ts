@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.user)
       .pipe(
         switchMap(() => {
-          return this.router.navigate([MyRoutes.Root, MyRoutes.Home]);
+          return this.router.navigate([MyRoutes.Root, MyRoutes.Login]);
         }),
         catchError(error => {
           this.isRegister = false;
