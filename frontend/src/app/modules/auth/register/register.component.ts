@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         }),
         catchError(error => {
           this.isRegister = false;
-          this.errorMessage = "Проверьте корректность данных. " + error.message;
+          this.errorMessage = "Проверьте корректность данных!";
           return throwError(() => error);
         }),
         finalize(() => {

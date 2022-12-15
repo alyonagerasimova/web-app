@@ -28,19 +28,14 @@
 
       <button type="button" class="form__button form__button_login"
               [disabled]="formGroup.invalid"
-              (click)="onSubmit()"
-      >Войти
+              (click)="onSubmit()">
+        Войти
       </button>
-
-      <!--          <button type="button" class="form__button form__button_login"-->
-      <!--                  routerLink="/"-->
-      <!--          >Отмена-->
-      <!--          </button>-->
       <h5 class="form__subtitle">Нет аккаунта?</h5>
 
       <button class="form__button" type="button"
-              routerLink="/auth/register"
-      >РЕГИСТРАЦИЯ
+              routerLink="/register">
+        РЕГИСТРАЦИЯ
       </button>
     </div>
   </form>

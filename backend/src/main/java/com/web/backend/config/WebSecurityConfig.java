@@ -66,9 +66,9 @@ public class WebSecurityConfig {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/**", "/test/**").permitAll()
-                .requestMatchers("/*.js", "/favicon.ico").permitAll()
-                .requestMatchers( "/**", "/welcome", "/login", "/logout").permitAll()
+                .requestMatchers("/login", "/test/**").permitAll()
+                .requestMatchers("/*.js", "/favicon.ico", "/**.html").permitAll()
+                .requestMatchers( "/api/v1/auth/**", "/welcome", "/login", "/logout").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
