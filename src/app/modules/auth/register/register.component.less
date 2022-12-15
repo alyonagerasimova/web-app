@@ -1,0 +1,141 @@
+.form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 15px 30px 15px;
+
+  &__input {
+    padding: 9px 12px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    border: 1px solid #616467FF;
+    display: block;
+
+    &:focus {
+      border: 1px solid #111111FF;
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      color: #616467FF;
+      font-weight: 500;
+    }
+
+    &:hover {
+      border-color: #083813;
+    }
+
+    &_error {
+      border-color: #DE2323FF;
+
+      &:hover {
+        border-color: #DE2323FF;
+      }
+    }
+
+    &_color {
+      height: 50px !important;
+      padding: 5px 12px ;
+    }
+  }
+
+  &__error {
+    &_text {
+      margin-top: -17px;
+      margin-bottom: 10px;
+      color: #DE2323FF;
+      font-weight: 500;
+      font-size: 13px;
+    }
+  }
+
+
+  &__button {
+    width: 100%;
+    background-color: #148A3FFF;
+    font-size: 14px;
+    border-radius: 500px;
+    border: none;
+    height: auto;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 12px;
+    margin-top: 10px;
+    color: #FFFFFFFF;
+    transition: .2s all ease-in-out;
+
+    &:hover {
+      color: #FFFFFFFF;
+      background-color: #1DB954FF;
+    }
+
+    &:disabled {
+      background-color: #056C05FF;
+      cursor: not-allowed;
+    }
+  }
+
+  &__button_login {
+    &:after {
+      content: "";
+      height: .5px;
+      width: 100%;
+      background-color: #8a8585;
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+    }
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    text-align: center;
+    margin-top: 30px;
+
+    &_signup {
+      font-size: 25px;
+      margin-bottom: 30px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    text-align: center;
+    margin: 45px 0 10px 0;
+
+    a {
+      color: #056C05FF;
+      transition: .2s color ease-in-out;
+
+      &:hover {
+        color: #0AC90AFF;
+      }
+    }
+  }
+
+  &__subtitle + &__button {
+    background-color: transparent;
+    color: #616467FF;
+    border: 2px solid #616467FF;
+
+    &:hover {
+      background-color: #616467FF;
+      color: #FFFFFF;
+      border-color: #616467FF;
+    }
+
+    a:hover {
+      color: #FFFFFF;
+    }
+  }
+}
+
+input.ng-touched.ng-invalid {
+  border-left: 5px solid #a94442;
+}
+
