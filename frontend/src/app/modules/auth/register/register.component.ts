@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Location} from '@angular/common';
 import {AuthService} from "../../../services/auth.service";
 import {TokenService} from "../../../services/token.service";
 import {AuthRegisterInfo} from "./AuthRegisterInfo";
-import {UserLogin, UserRegister} from "../../types";
+import {UserRegister} from "../../types";
+import {catchError, finalize, switchMap, throwError} from "rxjs";
+import {MyRoutes} from "../../my-routes";
 
 @Component({
   selector: 'app-register',
@@ -20,7 +22,8 @@ export class RegisterComponent implements OnInit {
   public formModel: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required, Validators.minLength(2)],],
     email: ['', [Validators.required, Validators.minLength(2)],],
-    password: ['', [Validators.required, Validators.minLength(3)]],});
+    password: ['', [Validators.required, Validators.minLength(3)]],
+  });
   public errorMessage = '';
 
   constructor(
@@ -38,32 +41,27 @@ export class RegisterComponent implements OnInit {
     // }
   }
 
-  public goBack(): void {
-    this.location.go('/welcome');
-  }
-
   public onSave(): void {
-    const model = this.formModel.value as UserRegister;
+    const model = this.formModel.value;
     this.user = new AuthRegisterInfo(
-      this.formModel.controls['username'].value,
-      this.formModel.controls['email'].value,
-      this.formModel.controls['password'].value);
+      model['username'],
+      model['email'],
+      model['password']);
 
-    this.authService.register(this.user).subscribe({
-      next: (data) => {
-        this.isRegister = true;
-        this.isLoading = false;
-        console.log(data);
-        return this.router.navigateByUrl("/home");
-      },
-      error: (error) => {
-        this.isRegister = false;
-        this.isLoading = false;
-        this.errorMessage = "Проверьте корректность данных. " + error.message;
-        console.log(this.errorMessage);
-      }
-    });
-
+    this.authService.register(this.user)
+      .pipe(
+        switchMap(() => {
+          return this.router.navigate([MyRoutes.Root, MyRoutes.Home]);
+        }),
+        catchError(error => {
+          this.isRegister = false;
+          this.errorMessage = "Проверьте корректность данных. " + error.message;
+          return throwError(() => error);
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
   }
-
 }

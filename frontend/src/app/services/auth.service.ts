@@ -20,8 +20,10 @@ export class AuthService {
     return this.http.post<JwtResponse>(AUTH_API + "login", credentials, httpOptions);
   }
 
-  register(info: UserRegister): Observable<UserProfile>{
-    return this.http.post<UserProfile>(AUTH_API + "register", info);
+  register(info: UserRegister): Observable<unknown>{
+    return this.http.post(AUTH_API + "register", info, {
+      responseType: "text"
+    });
   }
 
   logout(): void {
