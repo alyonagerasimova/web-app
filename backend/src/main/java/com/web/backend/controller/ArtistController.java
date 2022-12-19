@@ -30,7 +30,7 @@ public class ArtistController {
         return artistService.getArtist(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public ArtistDto create(@RequestBody ArtistDto dto) {
         if (dto.getId() != null) {
@@ -41,7 +41,7 @@ public class ArtistController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ArtistDto update(@PathVariable String id,@RequestBody ArtistDto dto) {
+    public ArtistDto update(@PathVariable String id, @RequestBody ArtistDto dto) {
         dto.setId(id);
         return artistService.save(dto);
     }

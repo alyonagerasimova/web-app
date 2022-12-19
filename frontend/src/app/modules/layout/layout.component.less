@@ -1,5 +1,6 @@
 :host {
   display: block;
+  height: 100%;
 }
 
 .layout {
@@ -10,10 +11,9 @@
   display: grid;
   position: relative;
   grid-template-areas: "sidebar header"
-                       "sidebar content"
-                       "sidebar footer";
+                       "sidebar content";
   grid-template-columns: 241px 1fr;
-  grid-template-rows: 60px 1fr 60px;
+  grid-template-rows: 60px 1fr;
 
   .header {
     grid-area: header;
@@ -82,17 +82,6 @@
   .main-page {
     grid-area: content;
     margin-left: 20px;
-  }
-
-  .footer {
-    grid-area: footer;
-    width: 100%;
-    background: rgb(18, 18, 18);
-
-    p {
-      padding: 12px 20px 12px 0;
-      color: #056c05;
-      text-align: end;
-    }
+    overflow-y: auto;
   }
 }

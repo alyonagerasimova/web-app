@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TokenService } from "../../../services/token.service";
-import { JwtResponse } from "../../types";
+import {Component, OnInit} from '@angular/core';
+import {TokenService} from "../../../services/token.service";
+import {UserDto} from "../../types";
 
 @Component({
   selector: 'app-user',
@@ -9,12 +9,12 @@ import { JwtResponse } from "../../types";
 })
 export class UserComponent implements OnInit {
 
-  currentUser?: JwtResponse;
+  currentUser?: UserDto;
 
-  constructor(private token: TokenService) { }
-
-  ngOnInit(): void {
-    this.currentUser = this.token.getUser();
+  constructor(private token: TokenService) {
   }
 
+  ngOnInit(): void {
+    this.currentUser = this.token.getUser()!;
+  }
 }

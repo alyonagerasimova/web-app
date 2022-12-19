@@ -1,8 +1,10 @@
 package com.web.backend.controller;
 
+import com.web.backend.dto.AlbumCreateDto;
 import com.web.backend.dto.AlbumDto;
 import com.web.backend.service.AlbumService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,16 +29,21 @@ public class AlbumController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public AlbumDto create(@RequestBody AlbumDto dto) {
-        if (dto.getId() != null) {
-            dto.setId(null);
+    public ResponseEntity<?> create(@RequestBody AlbumCreateDto dto) {
+        try {
+            if (dto.getId() != null) {
+                dto.setId(null);
+            }
+            return ResponseEntity.ok(this.albumService.save(dto));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
-        return albumService.save(dto);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public AlbumDto update(@PathVariable String id,@RequestBody AlbumDto dto) {
+    public AlbumDto update(@PathVariable String id, @RequestBody AlbumCreateDto dto) {
         dto.setId(id);
         return albumService.save(dto);
     }

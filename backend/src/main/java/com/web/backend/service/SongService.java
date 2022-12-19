@@ -1,6 +1,7 @@
 package com.web.backend.service;
 
 import com.web.backend.dto.SongDto;
+import com.web.backend.entity.SongEntity;
 import com.web.backend.repository.SongRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,19 +15,23 @@ public class SongService {
 
     private final SongRepo songRepo;
 
-    public List<SongDto> getSongs(){
+    public List<SongDto> getSongs() {
         return songRepo.findAll().stream().map(SongDto::fromSongEntity).collect(Collectors.toList());
     }
 
-    public SongDto getSong(String id){
+    public SongDto getSong(String id) {
         return SongDto.fromSongEntity(songRepo.getSongById(id));
     }
 
-    public SongDto save(SongDto songDto){
+    public SongDto save(SongDto songDto) {
         return SongDto.fromSongEntity(songRepo.save(songDto.toSongEntity()));
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         songRepo.deleteById(id);
+    }
+
+    public List<SongEntity> findSongs(List<String> ids) {
+        return this.songRepo.findAllById(ids);
     }
 }

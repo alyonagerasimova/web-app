@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Artist} from "../modules/types";
+import {Artist, ArtistCreate} from "../modules/types";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -22,14 +22,30 @@ export class ArtistService {
     return this.http.get<Artist>(`${ARTIST_API}/${id}`);
   }
 
-  //   @PostMapping("/create")
-  //   @PreAuthorize("hasRole('ADMIN')")
-  //   public ArtistDto create(@RequestBody ArtistDto dto) {
-  //   if (dto.getId() != null) {
-  //   dto.setId(null);
-  // }
-  // return artistService.save(dto);
-  // }
+  createArtist(artist: ArtistCreate): Observable<Artist> {
+    return this.http.post<Artist>(ARTIST_API, artist);
+  }
+
+//   @PostMapping
+//   @PreAuthorize("hasRole('ADMIN')")
+//   public ResponseEntity<?> create(@RequestBody AlbumCreateDto dto) {
+//   try {
+//   if (dto.getId() != null) {
+//   dto.setId(null);
+// }
+// return ResponseEntity.ok(this.albumService.save(dto));
+// } catch (Exception ex) {
+//   ex.printStackTrace();
+//   return ResponseEntity.badRequest().body(ex.getMessage());
+// }
+// }
+//
+// @PutMapping("/{id}")
+// @PreAuthorize("hasRole('ADMIN')")
+// public AlbumDto update(@PathVariable String id, @RequestBody AlbumCreateDto dto) {
+//   dto.setId(id);
+//   return albumService.save(dto);
+// }
   //
   // @PutMapping("/{id}")
   // @PreAuthorize("hasRole('ADMIN')")

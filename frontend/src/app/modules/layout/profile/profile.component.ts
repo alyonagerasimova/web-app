@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {JwtResponse} from "../../types";
+import {Component, OnInit} from '@angular/core';
+import {UserDto} from "../../types";
 import {TokenService} from "../../../services/token.service";
 
 @Component({
@@ -9,11 +9,12 @@ import {TokenService} from "../../../services/token.service";
 })
 export class ProfileComponent implements OnInit {
 
-  public currentUser?: JwtResponse;
+  public currentUser?: UserDto;
 
-  constructor(private token: TokenService) { }
+  constructor(private token: TokenService) {
+  }
 
   ngOnInit(): void {
-    this.currentUser = this.token.getUser();
+    this.currentUser = this.token.getUser()!;
   }
 }

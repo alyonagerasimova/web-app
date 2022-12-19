@@ -1,5 +1,5 @@
 <div class="layout">
-  <nav class="sidebar">
+  <div class="sidebar">
     <div class="logo" [routerLink]=homeUrl>
       MuzLite
     </div>
@@ -7,10 +7,8 @@
     <div class="sidebar-item" [routerLink]=artistPageUrl>Артисты</div>
     <div class="sidebar-item" [routerLink]=playlistPageUrl>Плейлисты</div>
     <div class="sidebar-item" [routerLink]=genrePageUrl>Жанры</div>
-    <div *ngIf="showAdminBoard">
-      Admin Board
-    </div>
-  </nav>
+    <div *ngIf="showAdminBoard" class="sidebar-item" [routerLink]="adminUrl">Admin Board</div>
+  </div>
 
   <header class="header">
     <div class="header__container">
@@ -21,8 +19,7 @@
         <div class="auth__profile" routerLink="profile">{{ username }}</div>
         <button
           class="auth__button"
-          (click)="logout()"
-          [routerLink]="['/']">
+          (click)="logout()">
           Выйти
         </button>
       </div>
@@ -32,8 +29,4 @@
   <div class="main-page">
     <router-outlet></router-outlet>
   </div>
-
-  <footer class="footer">
-    <p>spring-app 2022</p>
-  </footer>
 </div>

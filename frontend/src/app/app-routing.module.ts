@@ -36,10 +36,9 @@ const routes: Routes = [
           {path: MyRoutes.Profile, component: ProfileComponent},
           {path: MyRoutes.Genre, component: GenresComponent},
           {path: MyRoutes.Artists + "/:id", component: ArtistComponent},
+          {path: MyRoutes.Admin, component: AdminComponent},
         ]
-      },
-      {path: MyRoutes.Admin, component: AdminComponent},
-
+      }
     ]
   },
 ];

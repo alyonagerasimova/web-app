@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
 const HOME_API = environment.apiUrl + "/api/v1/";
@@ -10,8 +9,6 @@ const HOME_API = environment.apiUrl + "/api/v1/";
 })
 export class UserService {
 
-  // private userUrl = "http://localhost:8080";
-
   constructor(private http: HttpClient) {
   }
 
@@ -20,7 +17,4 @@ export class UserService {
     return this.http.get(url, {responseType: "json"});
   }
 
-  getAdminBoard(): Observable<any> {
-    return this.http.get(HOME_API + "admin", {responseType: 'text'});
-  }
 }

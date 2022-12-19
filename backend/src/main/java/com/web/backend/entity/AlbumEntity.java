@@ -3,9 +3,9 @@ package com.web.backend.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -28,4 +28,8 @@ public class AlbumEntity {
 
     @OneToMany(mappedBy = "album")
     private List<SongEntity> songs;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private ArtistEntity artist;
 }

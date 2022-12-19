@@ -6,13 +6,14 @@
     <div class="info__header">
       <div class="info__cover">
         <img
+          class="info__cover-img"
           [src]=artist?.photo
           alt="Изображение артиста"/>
       </div>
       <div class="info__desc">
         <h2 class="desc__category">Исполнитель</h2>
-        <h1 class="desc__name">{{artist?.artistName}}</h1>
-        <p class="desc__text">{{songs?.length}}, {{albums?.length}}</p>
+        <div class="desc__name">{{artist?.artistName}}</div>
+        <div class="desc__text">{{songs?.length}}, {{albums?.length}}</div>
       </div>
     </div>
     <div class="info__main">

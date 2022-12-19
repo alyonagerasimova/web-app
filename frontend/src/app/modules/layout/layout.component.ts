@@ -14,10 +14,10 @@ export class LayoutComponent implements OnInit {
   playlistPageUrl = [MyRoutes.Root, MyRoutes.Playlists];
   genrePageUrl = [MyRoutes.Root, MyRoutes.Genre];
   homeUrl = [MyRoutes.Root, MyRoutes.Home];
+  adminUrl = [MyRoutes.Root, MyRoutes.Admin];
 
   showAdminBoard = false;
   username?: string;
-  private role: string = '';
   isLoggedIn = false;
 
   constructor(private tokenStorage: TokenService,
@@ -27,9 +27,8 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if (this.isLoggedIn) {
-      const user = this.tokenStorage.getUser();
-      this.role = user.role;
-      this.showAdminBoard = this.role == 'ROLE_ADMIN';
+      const user = this.tokenStorage.getUser()!;
+      this.showAdminBoard = user.role == 'ROLE_ADMIN';
       this.username = user.username;
     }
   }

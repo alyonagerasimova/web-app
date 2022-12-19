@@ -1,0 +1,43 @@
+<div class="container">
+  <form class="form"
+        [formGroup]="formGroup"
+        novalidate>
+    <h1 class="form__title">Создание исполнителя</h1>
+
+    <div class="form-group">
+      <input id="name-input" class="form-control form__input" type="text" placeholder="Имя"
+             formControlName="artistName">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['artistName'].invalid && formGroup.controls['artistName'].touched">
+        Введите имя
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input id="photo-select" class="form-control form__input" type="text" placeholder="Фото"
+             formControlName="photo">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['photo'].invalid">
+        Ошибка
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input id="songs-select" class="form-control form__input" type="text" placeholder="Песни"
+             formControlName="songs">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['songs'].invalid">
+        Ошибка
+      </div>
+    </div>
+
+    <button [disabled]="formGroup.invalid"
+            (click)="onSubmit()">
+      Добавить исполнителя
+    </button>
+  </form>
+
+  <button>Добавить песню</button>
+  <button>Добавить альбом</button>
+  <button>Добавить плейлист</button>
+</div>

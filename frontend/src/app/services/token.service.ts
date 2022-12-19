@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {JwtResponse} from "../modules/types";
+import {Injectable} from '@angular/core';
+import {JwtResponse, UserDto} from "../modules/types";
 
 const TOKEN_KEY = 'AuthToken';
 const USER_KEY = 'AuthUser';
@@ -9,9 +9,6 @@ const USER_KEY = 'AuthUser';
 })
 
 export class TokenService {
-
-  constructor() { }
-
   signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(USER_KEY);
@@ -22,21 +19,21 @@ export class TokenService {
     localStorage.setItem(TOKEN_KEY, token);
   }
 
-  public getToken(): string | null{
+  public getToken(): string | null {
     return localStorage.getItem(TOKEN_KEY);
   }
 
-  public saveUser(user: JwtResponse): void{
+  public saveUser(user: JwtResponse): void {
     localStorage.removeItem(USER_KEY);
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
-  public getUser(): any{
-    const user =  localStorage.getItem(USER_KEY);
+  public getUser(): UserDto | null {
+    const user = localStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
     }
-    return {};
+    return null;
   }
 
 }

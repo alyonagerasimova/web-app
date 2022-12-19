@@ -7,9 +7,8 @@ import {TokenService} from "./services/token.service";
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  private role: string = '';
   isLoggedIn = false;
-  showAdminBoard = false;
+  isAdmin = false;
   username?: string;
 
   constructor(private tokenStorage: TokenService) {
@@ -19,9 +18,8 @@ export class AppComponent {
     this.isLoggedIn = !!this.tokenStorage.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorage.getUser();
-      this.role = user.role;
-      this.showAdminBoard = this.role == 'ROLE_ADMIN';
+      const user = this.tokenStorage.getUser()!;
+      this.isAdmin = user.role === 'ROLE_ADMIN';
       this.username = user.username;
     }
   }

@@ -1,22 +1,17 @@
-<div class="collections">
-  <div class="collections__title">
-    <h2 class="collections__title__name">Исполнители</h2>
+<div class="collections__title">
+  <h2 class="collections__title__name">Исполнители</h2>
+  <button *ngIf="isAdmin" mat-button>Добавить</button>
+</div>
+<div class="collections__artists" *ngIf="!isLoading">
+  <div class="artist" *ngFor="let artist of artistsList; index as i;">
+    <img *ngIf="artist.photo; else defaultUrl"
+         [src]=[artist.photo]
+         alt="" class="artist__img"/>
+    <ng-template #defaultUrl>
+      <img [src]=defaultArtistPhoto
+           alt="" class="artist__img"/>
+    </ng-template>
+    <h1 class="artist__name">{{artist.artistName}}</h1>
+    <h4 class="artist__role">исполнитель</h4>
   </div>
-
-  <ng-container *ngIf="isLoading">
-    <div class="collections__artists" *ngFor="let artist of artistsList; index as i;">
-      <div class="artist">
-        <img *ngIf="artist.photo; else defaultUrl"
-             [src]=[artist.photo]
-             alt="" class="artist__img"/>
-        <ng-template #defaultUrl>
-          <img [src]=defaultArtistPhoto
-               alt="" class="artist__img"/>
-        </ng-template>
-        <h1 class="artist__name">{{artist.artistName}}</h1>
-        <h4 class="artist__role">исполнитель</h4>
-      </div>
-    </div>
-  </ng-container>
-
 </div>

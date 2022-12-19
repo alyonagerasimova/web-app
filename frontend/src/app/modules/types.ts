@@ -19,16 +19,27 @@ export type UserLogin = {
 
 export type JwtResponse = {
   jwt: string,
+} & UserDto;
+
+export type UserDto = {
+  role: 'ROLE_ADMIN' | 'ROLE_USER'
   id: string,
   username: string,
   email: string,
-  role: string,
 }
 
 export type Artist = {
   id: string,
   artistName: string,
   photo: string,
+  songs: Song[],
+  albums: Album[]
+}
+
+export type ArtistCreate = {
+  artistName: string,
+  photo: string,
+  songs: string[]
 }
 
 export type Song = {
