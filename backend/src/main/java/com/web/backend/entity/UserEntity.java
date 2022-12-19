@@ -3,6 +3,7 @@ package com.web.backend.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class UserEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "username", nullable = false)
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)

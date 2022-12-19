@@ -8,7 +8,6 @@ import {ProfileComponent} from "./modules/layout/profile/profile.component";
 import {ArtistComponent} from "./modules/layout/artist/artist.component";
 import {UserComponent} from "./modules/layout/user/user.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {AdminComponent} from "./modules/admin/admin.component";
 import {PlaylistComponent} from "./modules/layout/playlist/playlist.component";
 import {AuthModule} from "./modules/auth/auth.module";
 import {SongsComponent} from "./modules/layout/songs/songs.component";
@@ -32,7 +31,6 @@ import {MatButtonModule} from "@angular/material/button";
     ArtistComponent,
     SongsComponent,
     PlaylistComponent,
-    AdminComponent,
     UserComponent,
     ProfileComponent,
     AllArtistsComponent,

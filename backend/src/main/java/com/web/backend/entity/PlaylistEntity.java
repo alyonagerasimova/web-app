@@ -1,10 +1,11 @@
 package com.web.backend.entity;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,10 +21,10 @@ public class PlaylistEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "playlist_name", nullable = false)
+    @Column(name = "playlist_name", nullable = false, unique = true)
     private String playlistName;
 
-    @Column(name = "cover", nullable = false)
+    @Column(name = "cover")
     private String cover;
 
     @ManyToOne

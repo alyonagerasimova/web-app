@@ -12,4 +12,6 @@ export enum MyRoutes {
   NotFound = '404',
   Forbidden = 'forbidden',
   Genre = 'genre',
+  CreateArtist = 'create-artist',
+  CreateSong = 'create-song'
 }

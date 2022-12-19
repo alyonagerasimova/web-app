@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminComponent} from "./modules/admin/admin.component";
 import {HomeComponent} from "./modules/layout/home/home.component";
 import {ProfileComponent} from "./modules/layout/profile/profile.component";
 import {WelcomeComponent} from "./modules/auth/welcome/welcome.component";
@@ -14,6 +13,9 @@ import {TokenGuard} from "./guards/token.guard";
 import {LayoutComponent} from "./modules/layout/layout.component";
 import {GenresComponent} from "./modules/layout/genres/genres.component";
 import {ArtistComponent} from "./modules/layout/artist/artist.component";
+import {CreateArtistComponent} from "./modules/admin/create-forms/create-artist/create-artist.component";
+import {AdminGuard} from "./guards/admin.guard";
+import {CreateSongComponent} from "./modules/admin/create-forms/create-song/create-song.component";
 
 const routes: Routes = [
   {path: "", redirectTo: MyRoutes.Welcome, pathMatch: 'full'},
@@ -30,13 +32,24 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
           {path: MyRoutes.Artists, component: AllArtistsComponent},
+          {
+            path: MyRoutes.CreateArtist,
+            canActivate: [AdminGuard],
+            component: CreateArtistComponent
+          },
+          {path: MyRoutes.Artists + "/:id", component: ArtistComponent},
+
           {path: MyRoutes.Songs, component: SongsComponent},
+          {
+            path: MyRoutes.CreateSong,
+            canActivate: [AdminGuard],
+            component: CreateSongComponent
+          },
           {path: MyRoutes.Playlists, component: PlaylistComponent},
           {path: MyRoutes.Home, component: HomeComponent},
           {path: MyRoutes.Profile, component: ProfileComponent},
           {path: MyRoutes.Genre, component: GenresComponent},
-          {path: MyRoutes.Artists + "/:id", component: ArtistComponent},
-          {path: MyRoutes.Admin, component: AdminComponent},
+
         ]
       }
     ]

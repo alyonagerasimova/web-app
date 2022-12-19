@@ -1,5 +1,105 @@
+:host {
+  display: block;
+  padding-bottom: 24px;
+  margin-bottom: 16px;
+  min-height: 300px;
+}
+
 .collections__spinner {
   display: flex;
   justify-content: center;
   margin-top: 30px;
+}
+
+.collections {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 16px;
+    color: #FFFFFFFF;
+
+    &__name {
+      padding-bottom: 5px;
+      font-size: 24px;
+      letter-spacing: -.04em;
+      line-height: 28px;
+      font-weight: 700;
+    }
+  }
+
+  &__songs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0 10px 10px 10px;
+
+    .song {
+      display: flex;
+      flex-direction: row;
+      max-width: 80%;
+
+      &__img {
+        width: 60px;
+        height: 60px;
+        margin: 0 10px;
+      }
+
+      &__audio {
+        &__name {
+          color: #FFFFFF;
+          font-size: 1rem;
+          font-weight: 700;
+          line-height: 1.5rem;
+          text-transform: uppercase;
+        }
+
+        audio {
+          filter: sepia(22%) saturate(68%) grayscale(1) contrast(99%) invert(80%);
+          width: 500px;
+          height: 35px;
+
+          //&::-webkit-media-controls {
+          //
+          //}
+          //
+          //&::-webkit-media-controls-panel {
+          //  border: #8a8585;
+          //  background-color: rgba(68, 68, 68, 0.49);
+          //}
+          //
+          //&::-webkit-media-controls-mute-button {
+          //
+          //}
+          //
+          //&::-webkit-media-controls-play-button {
+          //
+          //}
+
+          //-webkit-media-controls-timeline-container
+          //
+          //-webkit-media-controls-current-time-display
+          //
+          //-webkit-media-controls-time-remaining-display
+          //
+          //-webkit-media-controls-timeline
+          //
+          //-webkit-media-controls-volume-slider-container
+          //
+          //-webkit-media-controls-volume-slider
+          //
+          //-webkit-media-controls-seek-back-button
+          //
+          //-webkit-media-controls-seek-forward-button
+          //
+          //-webkit-media-controls-fullscreen-button
+          //
+          //-webkit-media-controls-rewind-button
+          //
+          //-webkit-media-controls-return-to-realtime-button
+          //
+          //-webkit-media-controls-toggle-closed-captions-button
+        }
+      }
+    }
+  }
 }

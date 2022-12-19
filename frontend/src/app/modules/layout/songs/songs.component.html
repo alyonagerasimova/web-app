@@ -1,22 +1,28 @@
-<div class="collections">
-  <div class="collections__title">
-    <h2 class="collections__title__name">Песни</h2>
+<div class="collections__title">
+  <h1 class="collections__title__name">Песни</h1>
+  <button *ngIf="isAdmin" mat-button [routerLink]="openFormArtistUrl">Добавить</button>
+</div>
+<div *ngIf="isLoading; else content">
+  <div class="collections__spinner">
+    <mat-spinner></mat-spinner>
   </div>
-  <div *ngIf="isLoading; else content">
-    <div class="collections__spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-  </div>
-  <ng-template #content>
-    <div class="collections__container song">
-      <div class="collections__playlists" *ngFor="let song of songsList; index as i;">
-        <h1 class="artist__name">{{song.songName}}</h1>
-        <audio controls>
+</div>
+<ng-template #content>
+  <div class="collections__songs">
+    <div class="song" *ngFor="let song of songsList; index as i;">
+      <img class="song__img" *ngIf="song.cover; else img_def" [src]=song.cover alt="cover"/>
+      <ng-template #img_def>
+        <img class="song__img" [src]=defaultImg alt="cover"/>
+      </ng-template>
+      <div class="song__audio">
+        <div class="song__audio__name">{{song.songName}}</div>
+        <audio controls preload="none" class="song__audio__controls">
           <source [src]="song.source">
         </audio>
       </div>
     </div>
-  </ng-template>
-</div>
+  </div>
+</ng-template>
+
 
 

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class GenreEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "genre_name", nullable = false)
+    @Column(name = "genre_name", nullable = false, unique = true)
     private String genreName;
 
     @OneToMany(mappedBy = "genre")

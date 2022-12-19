@@ -1,10 +1,11 @@
 package com.web.backend.entity;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class ArtistEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "artist_name")
+    @Column(name = "artist_name", nullable = false, unique = true)
     private String artistName;
 
     @Column(name = "photo")
@@ -28,4 +29,8 @@ public class ArtistEntity {
 
     @OneToMany(mappedBy = "artist")
     private List<SongEntity> songs;
+
+    @OneToMany(mappedBy = "artist")
+    private List<AlbumEntity> albums;
+
 }

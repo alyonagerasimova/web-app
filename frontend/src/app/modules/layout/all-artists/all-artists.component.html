@@ -1,9 +1,10 @@
 <div class="collections__title">
-  <h2 class="collections__title__name">Исполнители</h2>
-  <button *ngIf="isAdmin" mat-button>Добавить</button>
+  <h1 class="collections__title__name">Исполнители</h1>
+  <button *ngIf="isAdmin" mat-button [routerLink]="openFormArtistUrl">Добавить</button>
 </div>
 <div class="collections__artists" *ngIf="!isLoading">
-  <div class="artist" *ngFor="let artist of artistsList; index as i;">
+  <div class="artist" *ngFor="let artist of artistsList; index as i;"
+       (click)="getArtistPageUrl(artist.id)">
     <img *ngIf="artist.photo; else defaultUrl"
          [src]=[artist.photo]
          alt="" class="artist__img"/>
@@ -11,7 +12,7 @@
       <img [src]=defaultArtistPhoto
            alt="" class="artist__img"/>
     </ng-template>
-    <h1 class="artist__name">{{artist.artistName}}</h1>
+    <h2 class="artist__name">{{artist.artistName}}</h2>
     <h4 class="artist__role">исполнитель</h4>
   </div>
 </div>

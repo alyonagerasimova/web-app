@@ -45,7 +45,8 @@ export type ArtistCreate = {
 export type Song = {
   id: string,
   songName: string,
-  source: string
+  source: string,
+  cover: string
 }
 
 export type Playlist = {
