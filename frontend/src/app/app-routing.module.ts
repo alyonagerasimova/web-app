@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from "./modules/admin/admin.component";
 import {HomeComponent} from "./modules/layout/home/home.component";
 import {ProfileComponent} from "./modules/layout/profile/profile.component";
@@ -12,6 +12,8 @@ import {SongsComponent} from "./modules/layout/songs/songs.component";
 import {PlaylistComponent} from "./modules/layout/playlist/playlist.component";
 import {TokenGuard} from "./guards/token.guard";
 import {LayoutComponent} from "./modules/layout/layout.component";
+import {GenresComponent} from "./modules/layout/genres/genres.component";
+import {ArtistComponent} from "./modules/layout/artist/artist.component";
 
 const routes: Routes = [
   {path: "", redirectTo: MyRoutes.Welcome, pathMatch: 'full'},
@@ -32,6 +34,8 @@ const routes: Routes = [
           {path: MyRoutes.Playlists, component: PlaylistComponent},
           {path: MyRoutes.Home, component: HomeComponent},
           {path: MyRoutes.Profile, component: ProfileComponent},
+          {path: MyRoutes.Genre, component: GenresComponent},
+          {path: MyRoutes.Artists + "/:id", component: ArtistComponent},
         ]
       },
       {path: MyRoutes.Admin, component: AdminComponent},
@@ -44,4 +48,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

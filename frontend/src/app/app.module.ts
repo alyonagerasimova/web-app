@@ -18,6 +18,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { AllArtistsComponent } from './modules/layout/all-artists/all-artists.component';
 import { LayoutComponent } from './modules/layout/layout.component';
+import { GenresComponent } from './modules/layout/genres/genres.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LayoutComponent } from './modules/layout/layout.component';
     UserComponent,
     ProfileComponent,
     AllArtistsComponent,
-    LayoutComponent],
+    LayoutComponent,
+    GenresComponent],
     imports: [
         BrowserModule,
         RouterModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Artist} from "../../types";
 import {ArtistService} from "../../../services/artist.service";
 
@@ -12,20 +12,23 @@ export class AllArtistsComponent implements OnInit {
   artistsList: Artist [] = [];
   isLoading = true;
   error: string = '';
+  defaultArtistPhoto = "../../../../assets/img/avatar.svg";
 
-  constructor(private artistService:ArtistService) { }
+  constructor(private artistService: ArtistService) {
+  }
 
   ngOnInit(): void {
     this.artistService.getArtists()
-      .subscribe(
-        data => {
+      .subscribe({
+        next: (data) => {
           this.artistsList = data;
-          this.isLoading = false;
+          this.isLoading = true;
         },
-        err => {
+        error: (err) => {
+          this.isLoading = true;
           this.error = JSON.parse(err.error).message;
         }
-      );
+      });
   }
 
 }

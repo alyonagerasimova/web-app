@@ -1,6 +1,6 @@
 <div class="collections">
   <div class="collections__title">
-    <h1 class="collections__title__name">Плейлисты</h1>
+    <h1 class="collections__title__name">Жанры</h1>
   </div>
   <div *ngIf="isLoading; else content">
     <div class="collections__spinner">
@@ -9,8 +9,8 @@
   </div>
   <ng-template #content>
     <div class="collections__container">
-      <div class="collections__genres" *ngFor="let playlist of playlistsList; index as i;">
-        <h2 class="collections__genres__name">{{playlist.playlistName}}</h2>
+      <div class="collections__genres" *ngFor="let genre of genresList; index as i;">
+        <h2 class="collections__genres__name">{{genre.genreName}}</h2>
       </div>
     </div>
   </ng-template>

@@ -8,17 +8,17 @@ public class GenreDto {
     private String id;
     private String genreName;
 
-    public GenreEntity toGenreEntity(){
+    public GenreEntity toGenreEntity() {
         GenreEntity genre = new GenreEntity();
         genre.setGenreName(genreName);
         genre.setId(id);
         return genre;
     }
 
-    public static GenreDto fromGenreEntity(GenreEntity album){
+    public static GenreDto fromGenreEntity(GenreEntity genre) {
         GenreDto genreDto = new GenreDto();
-        genreDto.setId(album.getId());
-        genreDto.setGenreName(genreDto.getGenreName());
+        genreDto.setId(genre.getId());
+        genreDto.setGenreName(genre.getGenreName());
         return genreDto;
     }
 }

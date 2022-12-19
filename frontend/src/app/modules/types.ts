@@ -47,3 +47,8 @@ export type Album = {
   albumName: string,
   cover: string
 }
+
+export type Genre = {
+  id: string,
+  genreName: string
+}

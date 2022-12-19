@@ -5,7 +5,7 @@ import {Observable, tap} from "rxjs";
 import {environment} from "../../environments/environment";
 import {TokenService} from "./token.service";
 
-const AUTH_API = environment.apiUrl + "/auth/";
+const AUTH_API = environment.apiUrl + "/api/v1/auth/";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})

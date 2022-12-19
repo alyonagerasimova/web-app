@@ -1,1 +1,22 @@
-<p>song works!</p>
+<div class="collections">
+  <div class="collections__title">
+    <h2 class="collections__title__name">Песни</h2>
+  </div>
+  <div *ngIf="isLoading; else content">
+    <div class="collections__spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  <ng-template #content>
+    <div class="collections__container song">
+      <div class="collections__playlists" *ngFor="let song of songsList; index as i;">
+        <h1 class="artist__name">{{song.songName}}</h1>
+        <audio controls>
+          <source [src]="song.source">
+        </audio>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+

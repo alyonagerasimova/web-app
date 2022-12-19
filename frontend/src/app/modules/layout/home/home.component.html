@@ -1,27 +1,50 @@
-<div class="collections">
-      <div>Песни</div>
-      <ng-container *ngIf="isLoading">
-        <div *ngFor="let song of songsList; index as i;">
-          <div>{{song.songName}}</div>
-          <audio controls>
-            <source [src]="song.source">
-          </audio>
-        </div>
-      </ng-container>
+<div class="main-page-content">
+
+  <div class="collections">
+    <div class="collections__title">
+      <h2 class="collections__title__name">Песни</h2>
     </div>
-<div class="collections">
-      <div>Артисты</div>
-      <ng-container *ngIf="isLoading">
-        <div *ngFor="let artist of artistsList; index as i;">
-          <div>{{artist.artistName}}</div>
-        </div>
-      </ng-container>
+
+    <div class="collections__container song" *ngIf="!isLoading">
+      <div class="collections__playlists" *ngFor="let song of songsList; index as i;">
+        <h1 class="artist__name">{{song.songName}}</h1>
+        <audio controls style="width: 70%;">
+          <source [src]="song.source">
+        </audio>
+      </div>
     </div>
-<div class="collections">
-      <div>Плейлисты</div>
-      <ng-container *ngIf="isLoading">
-        <div *ngFor="let playlist of playlistsList; index as i;">
-          <div>{{playlist.playlistName}}</div>
-        </div>
-      </ng-container>
+
+  </div>
+
+  <div class="collections">
+    <div class="collections__title">
+      <h2 class="collections__title__name">Исполнители</h2>
     </div>
+
+    <div class="collections__container" *ngIf="!isLoading">
+      <div class="collections__playlists" *ngFor="let artist of artistsList; index as i;">
+        <div class="artist" (click)="getArtistPageUrl(artist.id)">
+          <img
+            [src]=artist.photo
+            alt="" class="artist__img"/>
+          <h1 class="artist__name">{{artist.artistName}}</h1>
+          <h4 class="artist__role">исполнитель</h4>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="collections">
+    <div class="collections__title">
+      <h2 class="collections__title__name">Плейлисты</h2>
+    </div>
+
+    <div class="collections__container" *ngIf="!isLoading">
+      <div class="collections__playlists" *ngFor="let playlist of playlistsList; index as i;">
+        <div>{{playlist.playlistName}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 
-const HOME_API = environment.apiUrl;
+const HOME_API = environment.apiUrl + "/api/v1/";
 
 @Injectable({
   providedIn: 'root'

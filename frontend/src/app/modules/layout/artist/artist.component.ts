@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Album, Artist, Song } from "../../types";
-import { ArtistService } from "../../../services/artist.service";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {Album, Artist, Song} from "../../types";
+import {ArtistService} from "../../../services/artist.service";
+import {of, switchMap} from "rxjs";
 
 @Component({
   selector: "app-artist",
@@ -10,8 +11,7 @@ import { ArtistService } from "../../../services/artist.service";
 })
 export class ArtistComponent implements OnInit {
 
-  public artist?: Artist;
-  public id?: string;
+  public artist?: null | Artist;
   public isLoading = true;
   public songs?: Song[];
   public albums?: Album[];
@@ -20,20 +20,28 @@ export class ArtistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-        this.id = params["id"];
-      }
-    );
-    this.artistService.getArtist(this.id!)
-      .subscribe(
-        data => {
+    this.loadArtist();
+  }
+
+  loadArtist() {
+    this.route.paramMap
+      .pipe(
+        switchMap(params => {
+          const id = params.get('id');
+          if (!id) {
+            return of(null);
+          }
+          return this.artistService.getArtist(params.get('id')!);
+        })
+      )
+      .subscribe({
+        next: data => {
           this.artist = data;
           this.isLoading = false;
         },
-        err => {
+        error: err => {
           this.artist = JSON.parse(err.error).message;
         }
-      );
+      });
   }
-
 }

@@ -11,4 +11,5 @@ export enum MyRoutes {
   Playlists = 'playlists',
   NotFound = '404',
   Forbidden = 'forbidden',
+  Genre = 'genre',
 }

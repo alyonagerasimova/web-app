@@ -1,11 +1,12 @@
 <div class="layout">
   <nav class="sidebar">
-    <div class="logo">
+    <div class="logo" [routerLink]=homeUrl>
       MuzLite
     </div>
     <div class="sidebar-item" [routerLink]=songPageUrl>Песни</div>
     <div class="sidebar-item" [routerLink]=artistPageUrl>Артисты</div>
     <div class="sidebar-item" [routerLink]=playlistPageUrl>Плейлисты</div>
+    <div class="sidebar-item" [routerLink]=genrePageUrl>Жанры</div>
     <div *ngIf="showAdminBoard">
       Admin Board
     </div>
@@ -17,7 +18,7 @@
       <!--        <router-outlet name="header-outlet"></router-outlet>-->
       <!--      </div>-->
       <div class="auth">
-        <div class="nav-link" routerLink="profile">{{ username }}</div>
+        <div class="auth__profile" routerLink="profile">{{ username }}</div>
         <button
           class="auth__button"
           (click)="logout()"

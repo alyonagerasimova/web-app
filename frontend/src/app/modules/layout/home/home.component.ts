@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Artist, Playlist, Song} from "../../types";
 import {HomeService} from "../../../services/home.service";
-import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {Router} from "@angular/router";
 
@@ -11,56 +10,28 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   artistsList: Artist [] = [];
   songsList: Song[] = [];
   playlistsList: Playlist[] = [];
+  id: string = '';
+  artistUrl = [MyRoutes.Root, MyRoutes.Artists];
 
-  private role: string = '';
-  isLoggedIn = false;
-  showAdminBoard = false;
-  username?: string;
 
-  artistPageUrl: string = "../" + MyRoutes.Artists;
-  songPageUrl: string = "../" + MyRoutes.Songs;
-  playlistPageUrl: string = "../" + MyRoutes.Playlists;
-
-  constructor(private homeService: HomeService,
-              private tokenStorage: TokenService,
-              private router: Router) {
+  constructor(private homeService: HomeService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorage.getToken();
-
     this.homeService.getData()
       .subscribe(data => {
-        console.log(data)
-        this.songsList = data[0].splice(0, 2);
-        this.playlistsList = data[1].splice(0, 2);
-        this.artistsList = data[2].splice(0, 2);
-        console.log(this.artistsList)
-        this.isLoading = true;
+        this.songsList = data[0].slice(0, 3);
+        this.playlistsList = data[1].slice(0, 3);
+        this.artistsList = data[2].slice(0, 3);
+        this.isLoading = false;
       });
-    console.log(this.isLoading);
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorage.getUser();
-      this.role = user.role;
-      this.showAdminBoard = this.role == 'ROLE_ADMIN';
-      this.username = user.username;
-    }
   }
 
-  logout(): void {
-    this.tokenStorage.signOut();
-    this.router.navigate([MyRoutes.Root, MyRoutes.Welcome]);
-    // if(environment.production){
-    //   window.location.href = "";
-    // }else {
-    //   window.location.reload();
-    // }
+  getArtistPageUrl(id: string) {
+    this.router.navigate([MyRoutes.Root, MyRoutes.Artists, id]);
   }
-
-
 }
