@@ -2,6 +2,8 @@ package com.web.backend.service;
 
 import com.web.backend.dto.SongCreateDto;
 import com.web.backend.dto.SongDto;
+import com.web.backend.entity.ArtistEntity;
+import com.web.backend.entity.GenreEntity;
 import com.web.backend.entity.SongEntity;
 import com.web.backend.repository.SongRepo;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,14 @@ public class SongService {
     }
 
     public SongDto createSong(SongCreateDto songDto) {
-        return SongDto.fromSongEntity(this.songRepo.save(songDto.toSongEntity()));
+        SongEntity song = new SongEntity();
+        song.setSongName(songDto.getSongName());
+        song.setSource(songDto.getSource());
+        song.setCover(songDto.getCover());
+        song.setGenre(entityManager.getReference(GenreEntity.class, songDto.getGenreId()));
+        song.setArtist(entityManager.getReference(ArtistEntity.class, songDto.getArtistId()));
+
+        return SongDto.fromSongEntity(this.songRepo.save(song));
     }
 
     public SongDto editSong(SongCreateDto songCreateDto, String songId) throws Exception {

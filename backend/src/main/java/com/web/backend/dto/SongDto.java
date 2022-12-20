@@ -10,6 +10,7 @@ public class SongDto {
     private String cover;
     private String source;
     private String artistId;
+    private String artistName;
 
 
     public SongEntity toSongEntity() {
@@ -29,6 +30,7 @@ public class SongDto {
         songDto.setCover(song.getCover());
         songDto.setSource(song.getSource());
         songDto.setArtistId(song.getArtist().getId());
+        songDto.setArtistName(song.getArtist().getArtistName());
         return songDto;
     }
 }

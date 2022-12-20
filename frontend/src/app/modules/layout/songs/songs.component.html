@@ -16,7 +16,7 @@
       </ng-template>
       <div class="song__audio">
         <div class="song__audio__name">{{song.songName}}</div>
-        <div class="song__audio__artist">{{artistName[i]}}</div>
+        <div class="song__audio__artist">{{song.artistName}}</div>
         <audio controls preload="none" class="song__audio__controls">
           <source [src]="song.source">
         </audio>

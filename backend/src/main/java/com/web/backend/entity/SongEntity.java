@@ -15,15 +15,15 @@ import javax.persistence.*;
 public class SongEntity {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @Column(name = "id")
     private String id;
 
     @Column(name = "song_name", nullable = false)
     private String songName;
 
-    @Column(name = "cover", nullable = true)
+    @Column(name = "cover")
     private String cover;
 
     @Column(name = "source", nullable = false)
