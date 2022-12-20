@@ -1,0 +1,53 @@
+.collections {
+  &__title {
+    display: flex;
+    margin: 20px 16px;
+    padding-bottom: 16px;
+    justify-content: space-between;
+    color: #191414FF;
+
+    &__name {
+      padding-bottom: 5px;
+      font-size: 24px;
+      line-height: 28px;
+      font-weight: 700;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__genres {
+    width: 400px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    padding: 20px;
+    transition: .2s transform ease-in-out;
+
+    &__name {
+      color: white;
+      font-weight: 900;
+      font-family: 'Circular', sans-serif;
+      text-shadow: 2px 3px 0 #000000;
+      letter-spacing: 2px;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &__img {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      bottom: 0;
+      right: 0;
+      transform: rotate(30deg);
+      background-color: black;
+    }
+  }
+}

@@ -46,8 +46,18 @@ export type Song = {
   id: string,
   songName: string,
   source: string,
-  cover: string
+  cover: string,
+  artistId: string
 }
+
+export type SongCreate = {
+  songName: string,
+  source: string,
+  cover: string,
+  artistId: string | undefined,
+  genreId: string | undefined
+}
+
 
 export type Playlist = {
   id: string,

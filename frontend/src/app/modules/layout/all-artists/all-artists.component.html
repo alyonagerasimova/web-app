@@ -1,6 +1,6 @@
 <div class="collections__title">
   <h1 class="collections__title__name">Исполнители</h1>
-  <button *ngIf="isAdmin" mat-button [routerLink]="openFormArtistUrl">Добавить</button>
+  <button *ngIf="isAdmin" class="btn btn-success" [routerLink]="openFormArtistUrl">Добавить</button>
 </div>
 <div class="collections__artists" *ngIf="!isLoading">
   <div class="artist" *ngFor="let artist of artistsList; index as i;"

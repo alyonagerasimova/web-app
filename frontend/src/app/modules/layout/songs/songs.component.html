@@ -1,6 +1,6 @@
 <div class="collections__title">
   <h1 class="collections__title__name">Песни</h1>
-  <button *ngIf="isAdmin" mat-button [routerLink]="openFormArtistUrl">Добавить</button>
+  <button *ngIf="isAdmin" class="btn btn-success" [routerLink]="openFormArtistUrl">Добавить</button>
 </div>
 <div *ngIf="isLoading; else content">
   <div class="collections__spinner">
@@ -16,6 +16,7 @@
       </ng-template>
       <div class="song__audio">
         <div class="song__audio__name">{{song.songName}}</div>
+        <div class="song__audio__artist">{{artistName[i]}}</div>
         <audio controls preload="none" class="song__audio__controls">
           <source [src]="song.source">
         </audio>

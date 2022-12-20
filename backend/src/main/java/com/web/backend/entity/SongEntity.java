@@ -1,10 +1,11 @@
 package com.web.backend.entity;
 
-import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "songs")
@@ -19,16 +20,13 @@ public class SongEntity {
     @Column(name = "id")
     private String id;
 
-    @Column(name = "song_name")
+    @Column(name = "song_name", nullable = false)
     private String songName;
 
-    @Column(name = "cover")
+    @Column(name = "cover", nullable = true)
     private String cover;
 
-    @Column(name = "duration")
-    private double duration;
-
-    @Column(name = "source")
+    @Column(name = "source", nullable = false)
     private String source;
 
     @ManyToOne

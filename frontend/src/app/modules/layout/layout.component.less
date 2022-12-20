@@ -6,19 +6,20 @@
 .layout {
   flex: 1;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, .6), rgb(18, 18, 18) 100%);
+  //background: linear-gradient(rgba(0, 0, 0, .6), rgb(18, 18, 18) 100%);
+  background-color: #F1F7F1;
   min-height: 863px;
   display: grid;
   position: relative;
   grid-template-areas: "sidebar header"
                        "sidebar content";
-  grid-template-columns: 241px 1fr;
+  grid-template-columns: 246px 1fr;
   grid-template-rows: 60px 1fr;
 
   .header {
     grid-area: header;
     align-content: center;
-    background-color: #121212FF;
+    background-color: #F1F7F1FF;
 
     &__container {
       display: flex;
@@ -31,16 +32,21 @@
         padding: 5px 10px;
 
         &__profile {
-          color: #FFFFFF;
+          color: #191414FF;
+          padding: 3px 0;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
 
         &__button {
           font-size: 16px;
+          padding: 3px 15px;
           border: none;
-          //background-color: rgba(29, 185, 84, 0.62);
-          background: none;
-          border-radius: 5px;
-          color: #fff;
+          color: rgba(0, 0, 0, 0.7);
+          background-color: #1DB95433;
+          border-radius: 15px;
           margin-left: 20px;
 
           &:hover {
@@ -53,16 +59,16 @@
 
   .sidebar {
     grid-area: sidebar;
-    background-color: #000000FF;
-    color: #FFFFFFFF;
+    background-color: #FFFFFFFF;
+    color: rgba(25, 20, 20, 1);
 
     .logo {
       color: #056c05;
-      height: 40px;
+      height: 60px;
       padding-left: 20px;
       padding-top: 20px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 22px;
 
       &:hover {
         cursor: pointer;
@@ -71,9 +77,12 @@
 
     &-item {
       padding: 20px;
+      font-size: 16px;
+      margin: 10px;
+      font-weight: 600;
 
       &:hover {
-        background-color: #1A1A1AFF;
+        background-color: #1DB95426;
         cursor: pointer;
       }
     }

@@ -1,8 +1,13 @@
 package com.web.backend.controller;
 
+import com.web.backend.dto.SongCreateDto;
 import com.web.backend.dto.SongDto;
+import com.web.backend.service.AlbumService;
+import com.web.backend.service.ArtistService;
+import com.web.backend.service.GenreService;
 import com.web.backend.service.SongService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SongController {
     private final SongService songService;
+    private final ArtistService artistService;
+    private final GenreService genreService;
+    private final AlbumService albumService;
 
     @GetMapping
     public List<SongDto> getSongs() {
@@ -25,21 +33,32 @@ public class SongController {
         return songService.getSong(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
-    public SongDto create(@RequestBody SongDto dto) {
-        if (dto.getId() != null) {
-            dto.setId(null);
+    public ResponseEntity<?> createSong(@RequestBody SongCreateDto dto) {
+        try {
+            return ResponseEntity.ok(this.songService.createSong(dto));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
-        return songService.save(dto);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public SongDto update(@PathVariable String id,@RequestBody SongDto dto) {
-        dto.setId(id);
-        return songService.save(dto);
+    public ResponseEntity<?> editSong(@RequestBody SongCreateDto dto, @PathVariable String id) {
+        try {
+            return ResponseEntity.ok(this.songService.editSong(dto, id));
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
+
+//    @PutMapping("/{id}")
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public SongDto update(@PathVariable String id, @RequestBody SongDto dto) {
+//        dto.setId(id);
+//        return songService.save(dto);
+//    }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

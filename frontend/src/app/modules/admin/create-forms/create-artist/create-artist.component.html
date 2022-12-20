@@ -4,7 +4,7 @@
         novalidate>
     <h1 class="form__title">Создание исполнителя</h1>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <input id="name-input" class="form-control form__input" type="text" placeholder="Имя"
              formControlName="artistName">
       <div class="form__error_text"
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <input id="photo-select" class="form-control form__input" type="text" placeholder="Фото"
              formControlName="photo">
       <div class="form__error_text"
@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mb-3">
       <input id="songs-select" class="form-control form__input" type="text" placeholder="Песни"
              formControlName="songs">
       <div class="form__error_text"
@@ -31,13 +31,10 @@
       </div>
     </div>
 
-    <button [disabled]="formGroup.invalid"
+    <button class="btn btn-primary" type="submit"
+            [disabled]="formGroup.invalid"
             (click)="onSubmit()">
       Добавить исполнителя
     </button>
   </form>
-
-  <button>Добавить песню</button>
-  <button>Добавить альбом</button>
-  <button>Добавить плейлист</button>
 </div>

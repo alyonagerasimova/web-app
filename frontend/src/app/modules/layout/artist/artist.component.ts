@@ -15,6 +15,7 @@ export class ArtistComponent implements OnInit {
   public isLoading = true;
   public songs?: Song[];
   public albums?: Album[];
+  defaultArtistPhoto = "../../../../assets/img/avatar.svg";
 
   constructor(private artistService: ArtistService, private route: ActivatedRoute) {
   }

@@ -1,12 +1,82 @@
 :host {
   display: block;
   overflow: hidden;
+}
 
-  .info {
+.info {
+  padding: 10px;
+
+  &__header {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: flex-end;
+    background-color: #FFFFFFC4;
+  }
+
+  &__main {
+    height: 500px;
+    padding: 30px;
+
+    .main {
+      &__title {
+        color: #191414;
+        font-size: 40px;
+        font-weight: 700;
+        margin: 20px 0;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
+      &__slider {
+        display: flex;
+        column-gap: 30px;
+      }
+
+      &__songs {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__cover {
+    margin-right: 30px;
+
+    img {
+      width: 250px;
+      height: 250px;
+      display: block;
+      border-radius: 3px;
+      object-fit: cover;
+      box-shadow: 2px 2px 11px -3px rgba(0, 0, 0, 0.65);
+      transition: .2s box-shadow ease-in-out;
+    }
+  }
+
+  &__desc {
+    width: 100%;
+    background-color: rgb(144 144 144 / 22%);;
+    color: #F1F1F138;
     padding: 10px;
+    border-radius: 10px;
 
-    &__cover-img {
-      width: 100%;
+    .desc {
+      &__category {
+        color: #676666;
+        text-transform: lowercase;
+      }
+
+      &__name {
+        color: #191414;
+        font-size: 70px;
+        font-weight: 700;
+        line-height: 110%;
+        text-transform: uppercase;
+      }
+
     }
   }
 }

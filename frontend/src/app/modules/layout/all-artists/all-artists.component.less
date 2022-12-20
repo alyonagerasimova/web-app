@@ -12,9 +12,9 @@
     padding-bottom: 16px;
     justify-content: space-between;
     font-weight: 700;
-    margin-right: 16px;
+    margin: 20px 16px;
     align-items: flex-end;
-    color: #FFFFFFFF;
+    color: #191414FF;
 
     &__name {
       padding-bottom: 5px;
@@ -34,13 +34,11 @@
 
     .artist {
       min-width: 180px;
-      width: 200px;
       max-width: 270px;
-      height: 270px;
       border-radius: 3px;
       position: relative;
       cursor: pointer;
-      background-color: #282828FF;
+      background-color: #e0ece087;
       transition: .25s background-color ease-in-out;
       padding: 17px;
 
@@ -56,7 +54,7 @@
       }
 
       &__name {
-        color: #FFFFFF;
+        color: #191414FF;
         font-weight: 700;
         font-size: 1rem;
         line-height: 1.5rem;
@@ -69,12 +67,12 @@
       }
 
       &__role {
-        color: rgb(167, 167, 167);
         font-weight: 700;
         font-size: 14px;
         text-transform: none;
         letter-spacing: normal;
-        background-color: #323232FF;
+        color: #646464FF;
+        background-color: #FFFFFFFF;
         display: inline-block;
         padding: 0 15px;
         border-radius: 18px;
@@ -82,8 +80,12 @@
       }
 
       &:hover {
-        background-color: #28282882;
-        box-shadow: 0 3px 9px 1px rgb(0 0 0 / 82%)
+        background-color: #1DB95426;
+        box-shadow: 0 3px 9px 1px rgb(202 202 202 / 82%);
+      }
+
+      &:hover .artist__img {
+        box-shadow: 2px 3px 24px -3px rgb(122 122 122 / 82%);
       }
     }
   }

@@ -15,8 +15,6 @@ export class HomeComponent implements OnInit {
   songsList: Song[] = [];
   playlistsList: Playlist[] = [];
   id: string = '';
-  artistUrl = [MyRoutes.Root, MyRoutes.Artists];
-
 
   constructor(private homeService: HomeService, private router: Router) {
   }

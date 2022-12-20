@@ -7,14 +7,10 @@
     <div class="sidebar-item" [routerLink]=artistPageUrl>Артисты</div>
     <div class="sidebar-item" [routerLink]=playlistPageUrl>Плейлисты</div>
     <div class="sidebar-item" [routerLink]=genrePageUrl>Жанры</div>
-    <div *ngIf="showAdminBoard" class="sidebar-item" [routerLink]="adminUrl">Admin Board</div>
   </div>
 
   <header class="header">
     <div class="header__container">
-      <!--      <div class="header__outlet">-->
-      <!--        <router-outlet name="header-outlet"></router-outlet>-->
-      <!--      </div>-->
       <div class="auth">
         <div class="auth__profile" routerLink="profile">{{ username }}</div>
         <button

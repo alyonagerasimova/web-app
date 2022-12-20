@@ -7,11 +7,7 @@
     {{ currentUser!.email }}
   </p>
   <strong>Roles:</strong>
-  <ul>
-    <li *ngFor="let role of currentUser!.role">
-      {{ role }}
-    </li>
-  </ul>
+  {{ currentUser!.role }}
 </div>
 
 <ng-template #loggedOut>
