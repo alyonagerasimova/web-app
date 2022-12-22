@@ -88,4 +88,7 @@ export class SongFormComponent implements OnInit {
       });
   }
 
+  onCancel() {
+    this.router.navigate([MyRoutes.Root, MyRoutes.Songs]);
+  }
 }

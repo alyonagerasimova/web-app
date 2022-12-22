@@ -2,7 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {Album, Artist, Song} from "../../types";
 import {ArtistService} from "../../../services/artist.service";
-import {of, switchMap} from "rxjs";
+import {catchError, finalize, first, switchMap, tap, throwError} from "rxjs";
+import {SongService} from "../../../services/song.service";
 
 @Component({
   selector: "app-artist",
@@ -15,34 +16,53 @@ export class ArtistComponent implements OnInit {
   public isLoading = true;
   public songs?: Song[];
   public albums?: Album[];
+  private artistId?: string | null;
   defaultArtistPhoto = "../../../../assets/img/avatar.svg";
 
-  constructor(private artistService: ArtistService, private route: ActivatedRoute) {
+  constructor(private readonly artistService: ArtistService,
+              private readonly route: ActivatedRoute,
+              private readonly songService: SongService) {
   }
 
   ngOnInit(): void {
     this.loadArtist();
+    this.loadArtistSong()
   }
 
   loadArtist() {
     this.route.paramMap
       .pipe(
         switchMap(params => {
-          const id = params.get('id');
-          if (!id) {
-            return of(null);
-          }
-          return this.artistService.getArtist(params.get('id')!);
+          this.artistId = params.get('id');
+          return this.artistService.getArtist(this.artistId || "");
+        }),
+        first(),
+        tap(data => {
+          this.artist = data;
+        }),
+        catchError(err => {
+          this.artist = JSON.parse(err.error).message;
+          return throwError(() => err);
+        }),
+        finalize(() => {
+          this.isLoading = false;
         })
       )
-      .subscribe({
-        next: data => {
-          this.artist = data;
-          this.isLoading = false;
-        },
-        error: err => {
-          this.artist = JSON.parse(err.error).message;
-        }
-      });
+      .subscribe();
+  }
+
+  loadArtistSong() {
+    if (this.artistId) {
+      this.songService.getSongs()
+        .pipe(
+          tap(songs => {
+            this.songs = songs.filter(song => song.artistId === this.artist?.id);
+          }),
+          finalize(() => {
+            this.isLoading = false;
+          })
+        )
+        .subscribe();
+    }
   }
 }

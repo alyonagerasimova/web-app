@@ -51,17 +51,12 @@ export class AllArtistsComponent implements OnInit {
     this.router.navigate([MyRoutes.Root, MyRoutes.CreateArtist, id]);
   }
 
-  deleteArtist(id: string) {
-    this.artistService
-      .deleteArtist(id)
+  deleteArtist(artist: Artist) {
+    this.artistService.deleteArtist(artist.id)
       .pipe(
-        // switchMap(song => {
-        //   return this.router.navigate([MyRoutes.Root, MyRoutes.Songs]);
-        // }),
         finalize(() => {
-          this.isLoading = false;
+          this.artistsList = this.artistsList.filter(singer => singer !== artist);
         })
-      )
-      .subscribe();
+      ).subscribe();
   }
 }

@@ -35,7 +35,6 @@ export class SongsComponent implements OnInit {
           this.artistName.push(data.artistName);
         })
     });
-    console.log(this.artistName)
   }
 
   private getIsAdmin(): boolean {

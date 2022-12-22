@@ -20,6 +20,7 @@ export class ArtistFormComponent implements OnInit {
   });
   artistId: string | null | undefined;
   private artist: ArtistCreate | undefined;
+  defaultArtistPhoto = "../../../../../assets/img/avatar.svg";
 
   constructor(private readonly songService: SongService,
               private readonly artistService: ArtistService,
@@ -87,6 +88,7 @@ export class ArtistFormComponent implements OnInit {
         )
         .subscribe();
     } else {
+      if (!model.photo) model.photo = this.defaultArtistPhoto;
       this.artistService
         .createArtist(model)
         .pipe(

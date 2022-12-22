@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Artist, ArtistCreate} from "../modules/types";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
@@ -30,7 +30,14 @@ export class ArtistService {
     return this.http.put<Artist>(`${ARTIST_API}/${id}`, artist);
   }
 
-  deleteArtist(id: string) {
-    return this.http.delete(`${ARTIST_API}/${id}`);
+  deleteArtist(id: string): Observable<Artist> {
+    return this.http.delete<Artist>(`${ARTIST_API}/${id}`)
+      .pipe(
+        catchError(err => {
+          console.error(err);
+          alert("Ошибка удаления исполнителя");
+          return throwError(err);
+        })
+      );
   }
 }
