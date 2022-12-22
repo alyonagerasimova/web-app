@@ -5,31 +5,17 @@
   <div class="info">
     <div class="info__header">
       <div class="info__cover">
-        <img *ngIf="artist?.photo; else defaultUrl"
+        <img
              class="info__cover-img"
-             [src]=artist?.photo
+             [src]=playlist?.cover
              alt="Изображение артиста"/>
-
-        <ng-template #defaultUrl>
-          <img [src]=defaultArtistPhoto
-               alt="Изображение артиста" class="info__cover-img"/>
-        </ng-template>
-
       </div>
       <div class="info__desc">
-        <h1 class="desc__category">Исполнитель</h1>
-        <div class="desc__name">{{artist?.artistName}}</div>
+        <h1 class="desc__category">Жанр</h1>
+        <div class="desc__name">{{playlist?.playlistName}}</div>
       </div>
     </div>
     <div class="info__main">
-      <h2 class="main__title">Альбомы</h2>
-      <div class="main__slider">
-        <div *ngFor="let album of albums">
-          <div>
-            {{album}}
-          </div>
-        </div>
-      </div>
       <h2 class="main__title">Песни</h2>
       <div class="song" *ngFor="let song of songs; index as i;">
         <img class="song__img" *ngIf="song.cover; else img_def" [src]=song.cover alt="cover"/>

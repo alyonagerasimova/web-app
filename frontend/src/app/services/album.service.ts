@@ -4,7 +4,7 @@ import {Album} from "../modules/types";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
-const ALBUM_API = environment.apiUrl + "/api/v1/artists/";
+const ALBUM_API = environment.apiUrl + "/api/v1/albums";
 
 @Injectable({
   providedIn: 'root'

@@ -17,16 +17,16 @@ public class GenreController {
     private final GenreService genreService;
 
     @GetMapping
-    public List<GenreDto> getAlbums() {
+    public List<GenreDto> getGenres() {
         return genreService.getGenres();
     }
 
     @GetMapping("/{id}")
-    public GenreDto getAlbum(@PathVariable String id) {
+    public GenreDto getGenre(@PathVariable String id) {
         return genreService.getGenre(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public GenreDto create(@RequestBody GenreDto dto) {
         if (dto.getId() != null) {

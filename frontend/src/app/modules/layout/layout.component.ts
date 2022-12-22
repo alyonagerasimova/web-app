@@ -12,7 +12,7 @@ export class LayoutComponent implements OnInit {
   artistPageUrl = [MyRoutes.Root, MyRoutes.Artists];
   songPageUrl = [MyRoutes.Root, MyRoutes.Songs];
   playlistPageUrl = [MyRoutes.Root, MyRoutes.Playlists];
-  genrePageUrl = [MyRoutes.Root, MyRoutes.Genre];
+  genrePageUrl = [MyRoutes.Root, MyRoutes.Genres];
   homeUrl = [MyRoutes.Root, MyRoutes.Home];
   username?: string;
   isLoggedIn = false;

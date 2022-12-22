@@ -2,7 +2,10 @@
   <form class="form"
         [formGroup]="formGroup"
         novalidate>
-    <h1 class="form__title">Создание песни</h1>
+    <h1 class="form__title" *ngIf="songId; else create">Редактирование песни</h1>
+    <ng-template #create>
+      <h1 class="form__title">Создание песни</h1>
+    </ng-template>
 
     <div class="form-group mb-3">
       <input id="name-input" class="form-control form__input" type="text" placeholder="Название песни"
@@ -54,14 +57,14 @@
         Ошибка
       </div>
     </div>
-    <div>
-      <button mat-raised-button color="primary"
-              [disabled]="formGroup.invalid"
-              (click)="onSubmit()">
-        Сохранить
-      </button>
-      <button mat-button (click)="onCancel()">Отмена</button>
-    </div>
+      <div (click)="invalidateForm()">
+        <button mat-raised-button color="primary"
+                [disabled]="formGroup.invalid"
+                (click)="onSubmit()">
+          Сохранить
+        </button>
+        <button mat-button (click)="onCancel()">Отмена</button>
+      </div>
   </form>
 </div>
 

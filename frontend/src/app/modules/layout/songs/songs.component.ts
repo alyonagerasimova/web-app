@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from "@angular/router";
 import {Artist, Song} from "../../types";
 import {SongService} from "../../../services/song.service";
 import {TokenService} from "../../../services/token.service";
@@ -14,12 +15,12 @@ export class SongsComponent implements OnInit {
   isLoading = true;
   songsList: Song[] = [];
   readonly isAdmin = this.getIsAdmin();
-  openFormArtistUrl = [MyRoutes.Root, MyRoutes.CreateSong];
   defaultImg = "../../../../assets/img/song_default.jpg";
   artistName: string[] = [];
 
   constructor(private songService: SongService,
               private readonly tokenService: TokenService,
+              private readonly router: Router,
               private artistService: ArtistService) {
   }
 
@@ -40,6 +41,6 @@ export class SongsComponent implements OnInit {
   private getIsAdmin(): boolean {
     return this.tokenService.getUser()?.role === "ROLE_ADMIN";
   }
-
+  openFormArtistUrl = () => this.router.navigate([MyRoutes.Root, MyRoutes.CreateSong]);
 }
 

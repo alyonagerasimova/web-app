@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { Router } from "@angular/router";
+import { MyRoutes } from "../../my-routes";
 import {Genre} from "../../types";
 import {GenreService} from "../../../services/genre.service";
 import {colors} from "./colors";
@@ -13,7 +15,7 @@ export class GenresComponent implements OnInit {
   genresList: Genre[] = [];
   backColor = (i: number) => colors[i];
 
-  constructor(private genreService: GenreService) {
+  constructor(private genreService: GenreService, private readonly router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,4 +26,7 @@ export class GenresComponent implements OnInit {
       });
   }
 
+  getGenrePageUrl(id: string) {
+    this.router.navigate([MyRoutes.Root, MyRoutes.Genres, id]);
+  }
 }

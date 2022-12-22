@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SongService} from "../../../../services/song.service";
 import {ArtistService} from "../../../../services/artist.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Artist, Genre, SongCreate} from "../../../types";
+import { Artist, Genre, Song, SongCreate } from "../../../types";
 import {finalize, first, switchMap, tap} from "rxjs";
 import {MyRoutes} from "../../../my-routes";
 import {GenreService} from "../../../../services/genre.service";
@@ -16,9 +16,10 @@ import {GenreService} from "../../../../services/genre.service";
 export class SongFormComponent implements OnInit {
 
   isLoading = true;
-  private artistId: string | null | undefined;
+  songId: string | null | undefined;
   artistsList: Artist[] = [];
   genresList: Genre[] = [];
+  song: SongCreate | undefined;
 
   formGroup: FormGroup = this.formBuilder.group({
     songName: ["", [Validators.required, Validators.minLength(2)]],
@@ -39,15 +40,39 @@ export class SongFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap
       .pipe(
-        tap(paramMap => {
-          this.artistId = paramMap.get('id');
+        switchMap(paramMap => {
+          this.songId = paramMap.get("id");
+          return this.songService.getSong(this.songId || "");
         }),
-        first()
+        first(),
+        tap(song => {
+          this.song = song;
+          this.pathForm(song);
+        }),
+        finalize(() => {
+          this.isLoading = false;
+        })
       )
       .subscribe();
 
     this.loadArtists();
     this.loadGenres();
+  }
+
+  private pathForm(song: Song) {
+    this.formGroup.patchValue({
+      songName: song.songName,
+      source: song.source,
+      cover: song.cover,
+      artistId: song.artistId,
+    });
+    this.formGroup.markAsPristine();
+  }
+
+  invalidateForm() {
+    this.formGroup.markAsDirty();
+    this.formGroup.markAllAsTouched();
+    this.formGroup.updateValueAndValidity();
   }
 
   onSubmit() {
@@ -60,18 +85,32 @@ export class SongFormComponent implements OnInit {
       genreId: modelValue.genreId
     };
 
-    this.songService
-      .createSong(model)
-      .pipe(
-        switchMap(song => {
-          console.log(song);
-          return this.router.navigate([MyRoutes.Root, MyRoutes.Songs]);
-        }),
-        finalize(() => {
-          this.isLoading = false;
-        })
-      )
-      .subscribe();
+    if(this.songId){
+      this.songService
+        .updateSong(model, this.songId)
+        .pipe(
+          switchMap(playlist => {
+            return this.router.navigate([MyRoutes.Root, MyRoutes.Playlists]);
+          }),
+          finalize(() => {
+            this.isLoading = false;
+          })
+        )
+        .subscribe();
+    }else{
+      this.songService
+        .createSong(model)
+        .pipe(
+          switchMap(song => {
+            console.log(song);
+            return this.router.navigate([MyRoutes.Root, MyRoutes.Songs]);
+          }),
+          finalize(() => {
+            this.isLoading = false;
+          })
+        )
+        .subscribe();
+    }
   }
 
   loadArtists() {

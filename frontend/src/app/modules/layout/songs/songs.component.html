@@ -1,6 +1,6 @@
 <div class="collections__title">
   <h1 class="collections__title__name">Песни</h1>
-  <button *ngIf="isAdmin" class="btn btn-success" [routerLink]="openFormArtistUrl">Добавить</button>
+  <button *ngIf="isAdmin" class="btn btn-success" (click)="openFormArtistUrl()">Добавить</button>
 </div>
 <div *ngIf="isLoading; else content">
   <div class="collections__spinner">

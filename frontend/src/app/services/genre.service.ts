@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {Genre} from "../modules/types";
 
-const GENRE_API = environment.apiUrl + "/api/v1/genres/";
+const GENRE_API = environment.apiUrl + "/api/v1/genres";
 
 @Injectable({
   providedIn: 'root'

@@ -9,7 +9,8 @@
 <ng-template #content>
   <div class="collections__content">
     <div class="collections__genres" *ngFor="let genre of genresList; index as i;"
-         [style.background-color]="backColor(i)">
+         [style.background-color]="backColor(i)"
+         (click)="getGenrePageUrl(genre.id)">
       <h2 class="collections__genres__name">{{genre.genreName}}</h2>
     </div>
   </div>

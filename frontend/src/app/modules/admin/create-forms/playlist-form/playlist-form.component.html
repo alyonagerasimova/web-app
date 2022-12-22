@@ -1,0 +1,48 @@
+<div class="container">
+  <form class="form"
+        [formGroup]="formGroup"
+        novalidate>
+    <h1 class="form__title" *ngIf="playlistId; else create">Редактирование плейлиста</h1>
+    <ng-template #create>
+      <h1 class="form__title">Создание плейлиста</h1>
+    </ng-template>
+
+    <div class="form-group mb-3">
+      <input id="name-input" class="form-control form__input" type="text" placeholder="Название"
+             formControlName="playlistName">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['playlistName'].invalid && formGroup.controls['playlistName'].touched">
+        Введите название
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <input id="cover-select" class="form-control form__input" type="text" placeholder="Обложка"
+             formControlName="cover">
+      <div class="form__error_text"
+           *ngIf="formGroup.controls['cover'].invalid">
+        Ошибка
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="song-select" class="form-label">Песни</label>
+      <select id="song-select" class="form-control form-select" multiple
+              formControlName="songId">
+        <option *ngFor="let song of songs" [value]="song.id">{{song.songName}}</option>
+      </select>
+      <div class="form__error_text invalid-feedback"
+           *ngIf="formGroup.controls['songId'].invalid && formGroup.controls['songId'].touched">
+        Ошибка
+      </div>
+    </div>
+    <div (click)="invalidateForm()">
+      <button mat-raised-button color="primary"
+              [disabled]="formGroup.invalid"
+              (click)="onSubmit()">
+        Сохранить
+      </button>
+      <button mat-button (click)="onCancel()">Отмена</button>
+    </div>
+  </form>
+</div>

@@ -4,7 +4,7 @@ import {Artist, Playlist, Song} from "../modules/types";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 
-const HOME_API = environment.apiUrl + "/api/v1/home/";
+const HOME_API = environment.apiUrl + "/api/v1/home";
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };

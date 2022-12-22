@@ -4,7 +4,7 @@ import {ArtistService} from "../../../services/artist.service";
 import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {Router} from "@angular/router";
-import {finalize} from "rxjs";
+import { finalize, tap } from "rxjs";
 
 @Component({
   selector: 'app-all-artists',
@@ -54,7 +54,7 @@ export class AllArtistsComponent implements OnInit {
   deleteArtist(artist: Artist) {
     this.artistService.deleteArtist(artist.id)
       .pipe(
-        finalize(() => {
+        tap(() => {
           this.artistsList = this.artistsList.filter(singer => singer !== artist);
         })
       ).subscribe();

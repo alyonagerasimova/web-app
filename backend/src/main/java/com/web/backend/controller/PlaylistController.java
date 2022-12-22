@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/api/v1/playlists")
@@ -14,17 +16,17 @@ public class PlaylistController {
 
     private final PlaylistService playlistService;
 
-//    @GetMapping
-//    public List<PlaylistDto> getPlaylists() {
-//        return playlistService.getPlaylists();
-//    }
+    @GetMapping("")
+    public List<PlaylistDto> getPlaylists() {
+        return playlistService.getPlaylists();
+    }
 
     @GetMapping(path = "/{id}")
     public PlaylistDto getPlaylist(@PathVariable String id) {
         return playlistService.getPlaylist(id);
     }
 
-    @PostMapping
+    @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public PlaylistDto create(@RequestBody PlaylistDto dto) {
         if (dto.getId() != null) {
@@ -33,13 +35,13 @@ public class PlaylistController {
         return playlistService.save(dto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public void deletePlaylist(@PathVariable String id){
        playlistService.delete(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public PlaylistDto update(@PathVariable String id,@RequestBody PlaylistDto dto) {
         dto.setId(id);
