@@ -39,8 +39,10 @@
   </div>
 
   <div class="collections__container" *ngIf="!isLoading">
-    <div class="collections__playlists" *ngFor="let playlist of playlistsList; index as i;">
-      <div>{{playlist.playlistName}}</div>
+    <div class="playlist" *ngFor="let playlist of playlistsList; index as i;"
+         (click)="getGenrePageUrl(playlist.id)">
+      <img class="playlist__img" [src]=playlist?.cover alt="cover"/>
+      <h2 class="playlist__name">{{playlist.playlistName}}</h2>
     </div>
   </div>
 

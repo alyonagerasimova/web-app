@@ -45,9 +45,6 @@ export class ArtistComponent implements OnInit {
           this.artist = JSON.parse(err.error).message;
           return throwError(() => err);
         }),
-        finalize(() => {
-          this.isLoading = false;
-        })
       )
       .subscribe();
   }

@@ -6,17 +6,20 @@ import com.web.backend.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
 public class PlaylistService {
     private final PlaylistRepo playlistRepo;
     private final UserRepo userRepo;
+    private final EntityManager entityManager;
 
     public List<PlaylistDto> getPlaylists() {
-        return playlistRepo.findAll().stream().map(PlaylistDto::fromPlaylistEntity).collect(Collectors.toList());
+        return playlistRepo.findAll().stream().map(PlaylistDto::fromPlaylistEntity).collect(toList());
     }
 
     public PlaylistDto getPlaylist(String id) {
@@ -29,7 +32,7 @@ public class PlaylistService {
 //        return PlaylistDto.fromPlaylistEntity(playlistRepo.save(playlist));
 //    }
 
-    public PlaylistDto save(PlaylistDto playlistDto){
+    public PlaylistDto save(PlaylistDto playlistDto) {
         return PlaylistDto.fromPlaylistEntity(playlistRepo.save(playlistDto.toPlaylistEntity()));
     }
 

@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SongService} from "../../../../services/song.service";
 import {ArtistService} from "../../../../services/artist.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import { Artist, Genre, Song, SongCreate } from "../../../types";
+import {Artist, Genre, Song, SongCreate} from "../../../types";
 import {finalize, first, switchMap, tap} from "rxjs";
 import {MyRoutes} from "../../../my-routes";
 import {GenreService} from "../../../../services/genre.service";
@@ -25,8 +25,8 @@ export class SongFormComponent implements OnInit {
     songName: ["", [Validators.required, Validators.minLength(2)]],
     source: ["", [Validators.required]],
     cover: [""],
-    artistId: [""],
-    genreId: [""]
+    artistId: ["", [Validators.required]],
+    genreId: ["", [Validators.required]]
   });
 
   constructor(private songService: SongService,
@@ -65,6 +65,7 @@ export class SongFormComponent implements OnInit {
       source: song.source,
       cover: song.cover,
       artistId: song.artistId,
+      genreId: song.genreId,
     });
     this.formGroup.markAsPristine();
   }
@@ -85,7 +86,7 @@ export class SongFormComponent implements OnInit {
       genreId: modelValue.genreId
     };
 
-    if(this.songId){
+    if (this.songId) {
       this.songService
         .updateSong(model, this.songId)
         .pipe(
@@ -97,7 +98,7 @@ export class SongFormComponent implements OnInit {
           })
         )
         .subscribe();
-    }else{
+    } else {
       this.songService
         .createSong(model)
         .pipe(

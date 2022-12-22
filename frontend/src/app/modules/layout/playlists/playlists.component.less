@@ -16,4 +16,37 @@
       font-weight: 700;
     }
   }
+
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .playlist {
+      min-width: 320px;
+      max-width: 320px;
+      cursor: pointer;
+      padding: 17px;
+      text-align: center;
+
+      &__img {
+        height: 300px;
+        width: 300px;
+      }
+
+      &__name {
+        color: var(--text-color);
+        font-weight: 700;
+        font-size: 1rem;
+        text-transform: uppercase;
+        padding: 7px;
+      }
+    }
+  }
 }

@@ -1,19 +1,18 @@
-<div class="collections">
-  <div class="collections__title">
-    <h1 class="collections__title__name">Плейлисты</h1>
-    <button *ngIf="isAdmin" class="btn btn-success" (click)="openPlaylistForm()">Добавить</button>
-  </div>
-  <div *ngIf="isLoading; else content">
-    <div class="collections__spinner">
-      <mat-spinner></mat-spinner>
-    </div>
-  </div>
-  <ng-template #content>
-    <div class="collections__container">
-      <div class="collections__genres" *ngFor="let playlist of playlistsList; index as i;"
-           (click)="getGenrePageUrl(playlist.id)">
-        <h2 class="collections__genres__name">{{playlist.playlistName}}</h2>
-      </div>
-    </div>
-  </ng-template>
+<div class="collections__title">
+  <h1 class="collections__title__name">Плейлисты</h1>
+  <button *ngIf="isAdmin" mat-flat-button color="primary" (click)="openPlaylistForm()">Добавить</button>
 </div>
+<div *ngIf="isLoading; else content">
+  <div class="collections__spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<ng-template #content>
+  <div class="collections__container">
+    <div class="playlist" *ngFor="let playlist of playlistsList; index as i;"
+         (click)="getGenrePageUrl(playlist.id)">
+      <img class="playlist__img" [src]=playlist?.cover alt="cover"/>
+      <h2 class="playlist__name">{{playlist.playlistName}}</h2>
+    </div>
+  </div>
+</ng-template>

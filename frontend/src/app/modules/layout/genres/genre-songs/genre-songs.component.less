@@ -3,6 +3,12 @@
   overflow: hidden;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
 .info {
   padding: 10px;
 
@@ -15,12 +21,11 @@
   }
 
   &__main {
-    height: 500px;
-    padding: 30px;
+    padding: 20px;
 
     .main {
       &__title {
-        color: #191414;
+        color: var(--text-color);
         font-size: 40px;
         font-weight: 700;
         margin: 20px 0;
@@ -30,16 +35,11 @@
         }
       }
 
-      &__slider {
-        display: flex;
-        column-gap: 30px;
-      }
-
       &__songs {
         display: flex;
         flex-direction: column;
         gap: 32px;
-        margin: 0 10px 20px 10px;
+        margin: 30px 10px 30px 10px;
 
         .song {
           display: flex;
@@ -57,7 +57,7 @@
             justify-content: space-between;
 
             &__name {
-              color: #191414FF;
+              color: var(--text-color);
               font-size: 1rem;
               font-weight: 700;
               line-height: 1.5rem;
@@ -85,7 +85,7 @@
 
   &__desc {
     width: 100%;
-    background-color: rgb(144 144 144 / 22%);;
+    background: var(--bg-info-desc);
     color: #F1F1F138;
     padding: 10px;
     border-radius: 10px;

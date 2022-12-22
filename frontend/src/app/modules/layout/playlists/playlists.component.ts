@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { PlaylistService } from "../../../services/playlist.service";
-import { TokenService } from "../../../services/token.service";
-import { MyRoutes } from "../../my-routes";
-import { Playlist } from "../../types";
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {PlaylistService} from "../../../services/playlist.service";
+import {TokenService} from "../../../services/token.service";
+import {MyRoutes} from "../../my-routes";
+import {Playlist} from "../../types";
 
 @Component({
   selector: "app-playlist",
@@ -36,6 +36,6 @@ export class PlaylistsComponent implements OnInit {
   }
 
   public getGenrePageUrl(id: string) {
-    this.router.navigate([MyRoutes.Root, MyRoutes.Playlists, id])
+    this.router.navigate([MyRoutes.Root, MyRoutes.Playlists, id]);
   }
 }

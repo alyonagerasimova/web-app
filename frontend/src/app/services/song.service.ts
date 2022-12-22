@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {Song, SongCreate} from "../modules/types";
 import {environment} from "../../environments/environment";
 
@@ -28,5 +28,16 @@ export class SongService {
 
   updateSong(song: SongCreate, id: string): Observable<Song> {
     return this.http.put<Song>(`${SONG_API}/${id}`, song);
+  }
+
+  deleteSong(id: string): Observable<Song> {
+    return this.http.delete<Song>(`${SONG_API}/${id}`)
+      .pipe(
+        catchError(err => {
+          console.error(err);
+          alert("Ошибка удаления песни");
+          return throwError(err);
+        })
+      );
   }
 }

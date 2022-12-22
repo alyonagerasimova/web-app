@@ -48,8 +48,8 @@ export type Song = {
   source: string,
   cover: string,
   artistId: string,
+  genreId: string,
   artistName?: string,
-  genreId?: string,
   playlistId?: string
 }
 

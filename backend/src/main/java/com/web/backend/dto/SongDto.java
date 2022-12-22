@@ -10,6 +10,7 @@ public class SongDto {
     private String cover;
     private String source;
     private String artistId;
+    private String genreId;
     private String artistName;
 
 
@@ -30,6 +31,7 @@ public class SongDto {
         songDto.setCover(song.getCover());
         songDto.setSource(song.getSource());
         songDto.setArtistId(song.getArtist().getId());
+        songDto.setGenreId(song.getGenre().getId());
         songDto.setArtistName(song.getArtist().getArtistName());
         return songDto;
     }

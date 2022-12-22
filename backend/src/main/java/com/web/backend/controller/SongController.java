@@ -33,7 +33,7 @@ public class SongController {
         return songService.getSong(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createSong(@RequestBody SongCreateDto dto) {
         try {

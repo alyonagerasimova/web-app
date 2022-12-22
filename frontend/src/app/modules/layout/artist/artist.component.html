@@ -22,26 +22,28 @@
       </div>
     </div>
     <div class="info__main">
+      <h2 class="main__title">Песни</h2>
+      <div class="main__songs">
+        <div class="song" *ngFor="let song of songs; index as i;">
+          <img class="song__img" *ngIf="song.cover; else img_def" [src]=song.cover alt="cover"/>
+          <ng-template #img_def>
+            <img class="song__img" [src]=defaultImg alt="cover"/>
+          </ng-template>
+          <div class="song__audio">
+            <div class="song__audio__name">{{song.songName}}</div>
+            <div class="song__audio__artist">{{song.artistName}}</div>
+            <audio controls preload="none" class="song__audio__controls">
+              <source [src]="song.source">
+            </audio>
+          </div>
+        </div>
+      </div>
       <h2 class="main__title">Альбомы</h2>
       <div class="main__slider">
         <div *ngFor="let album of albums">
           <div>
             {{album}}
           </div>
-        </div>
-      </div>
-      <h2 class="main__title">Песни</h2>
-      <div class="song" *ngFor="let song of songs; index as i;">
-        <img class="song__img" *ngIf="song.cover; else img_def" [src]=song.cover alt="cover"/>
-        <ng-template #img_def>
-          <img class="song__img" [src]=defaultImg alt="cover"/>
-        </ng-template>
-        <div class="song__audio">
-          <div class="song__audio__name">{{song.songName}}</div>
-          <div class="song__audio__artist">{{song.artistName}}</div>
-          <audio controls preload="none" class="song__audio__controls">
-            <source [src]="song.source">
-          </audio>
         </div>
       </div>
     </div>

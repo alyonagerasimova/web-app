@@ -43,6 +43,27 @@
   &__container {
     display: flex;
     justify-content: space-between;
+    
+    .playlist {
+      min-width: 320px;
+      max-width: 320px;
+      cursor: pointer;
+      padding: 17px;
+      text-align: center;
+
+      &__img {
+        height: 300px;
+        width: 300px;
+      }
+
+      &__name {
+        color: var(--text-color);
+        font-weight: 700;
+        font-size: 1rem;
+        text-transform: uppercase;
+        padding: 7px;
+      }
+    }
   }
 
   .song {
@@ -64,7 +85,6 @@
       background-color: var(--artist-card-bg-color);
       transition: .25s background-color ease-in-out;
       padding: 17px;
-      z-index: 0;
 
       &__img {
         width: 250px;
@@ -80,13 +100,9 @@
       &__name {
         font-weight: 700;
         font-size: 1rem;
-        line-height: 1.5rem;
-        letter-spacing: normal;
         text-transform: uppercase;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         padding-bottom: 4px;
+        color: #4e4e4e;
       }
 
 

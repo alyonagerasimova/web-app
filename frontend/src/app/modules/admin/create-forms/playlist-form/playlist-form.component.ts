@@ -1,11 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { finalize, first, switchMap, tap } from "rxjs";
-import { PlaylistService } from "../../../../services/playlist.service";
-import { SongService } from "../../../../services/song.service";
-import { MyRoutes } from "../../../my-routes";
-import { Artist, Playlist, PlaylistCreate, Song } from "../../../types";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {finalize, first, switchMap, tap} from "rxjs";
+import {PlaylistService} from "../../../../services/playlist.service";
+import {SongService} from "../../../../services/song.service";
+import {MyRoutes} from "../../../my-routes";
+import {Playlist, PlaylistCreate, Song} from "../../../types";
 
 @Component({
   selector: "app-create-playlist",
@@ -23,12 +23,13 @@ export class PlaylistFormComponent implements OnInit {
   songs: Song[] = [];
   playlistId: string | null | undefined;
   private playlist: Playlist | undefined;
+  defaultImgPlaylist = "https://avatars.yandex.net/get-music-user-playlist/70586/r5l8ziDPSKyp02/m1000x1000?1641976255599";
 
   constructor(private readonly songService: SongService,
-    private readonly playlistService: PlaylistService,
-    private readonly route: ActivatedRoute,
-    private readonly formBuilder: FormBuilder,
-    private readonly router: Router,) {
+              private readonly playlistService: PlaylistService,
+              private readonly route: ActivatedRoute,
+              private readonly formBuilder: FormBuilder,
+              private readonly router: Router,) {
   }
 
   ngOnInit(): void {
@@ -86,7 +87,7 @@ export class PlaylistFormComponent implements OnInit {
         .updatePlaylist(model, this.playlistId)
         .pipe(
           switchMap(playlist => {
-            return this.navigateOnPlaylist(playlist.playlistId!);
+            return this.router.navigate([MyRoutes.Root, MyRoutes.Playlists]);
           }),
           finalize(() => {
             this.isLoading = false;
@@ -94,20 +95,12 @@ export class PlaylistFormComponent implements OnInit {
         )
         .subscribe();
     } else {
+      if (!model.cover) model.cover = this.defaultImgPlaylist;
       this.playlistService
         .createPlaylist(model)
         .pipe(
           switchMap(playlist => {
-            model.songs.map(songId => {
-              this.songService.getSong(songId)
-                .pipe(
-                  tap((song: Song) => {
-                    song.playlistId = this.playlistId || "";
-                  })
-                )
-                .subscribe();
-            });
-            return this.navigateOnPlaylist(playlist.id!);
+            return this.router.navigate([MyRoutes.Root, MyRoutes.Playlists]);
           }),
           finalize(() => {
             this.isLoading = false;

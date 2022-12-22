@@ -32,4 +32,8 @@ export class HomeComponent implements OnInit {
   getArtistPageUrl(id: string) {
     this.router.navigate([MyRoutes.Root, MyRoutes.Artists, id]);
   }
+
+  getGenrePageUrl(id: string) {
+    this.router.navigate([MyRoutes.Root, MyRoutes.Playlists, id]);
+  }
 }

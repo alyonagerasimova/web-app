@@ -57,7 +57,7 @@ public class WebSecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         var configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("*");
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTION"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTION"));
         configuration.setAllowedHeaders(Arrays.asList(
                 "Access-Control-Allow-Headers",
                 "Access-Control-Allow-Origin",
@@ -80,7 +80,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
                 .antMatchers("/*.js", "/favicon.ico", "/**.html").permitAll()
-                .antMatchers( "/api/v1/auth/**", "/welcome", "/login", "/register").permitAll()
+                .antMatchers("/api/v1/auth/**", "/welcome", "/login", "/register").permitAll()
                 .anyRequest().authenticated();
         httpSecurity.addFilterBefore(jwtAuthTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();

@@ -5,6 +5,7 @@ import {SongService} from "../../../services/song.service";
 import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {ArtistService} from "../../../services/artist.service";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-song',
@@ -45,11 +46,16 @@ export class SongsComponent implements OnInit {
   openFormArtistUrl = () => this.router.navigate([MyRoutes.Root, MyRoutes.CreateSong]);
 
   deleteSong(song: Song) {
-
+    this.songService.deleteSong(song.id)
+      .pipe(
+        tap(() => {
+          this.songsList = this.songsList.filter(sing => sing !== song);
+        })
+      ).subscribe();
   }
 
   navigateToSongEditForm(id: string) {
-
+    this.router.navigate([MyRoutes.Root, MyRoutes.CreateSong, id]);
   }
 }
 
