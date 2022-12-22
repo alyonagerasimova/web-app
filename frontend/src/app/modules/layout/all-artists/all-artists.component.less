@@ -20,7 +20,7 @@
     font-weight: 700;
     margin: 20px 16px;
     align-items: flex-end;
-    color: #191414FF;
+    color: var(--text-color);
 
     &__name {
       padding-bottom: 5px;
@@ -44,19 +44,19 @@
       border-radius: 3px;
       position: relative;
       cursor: pointer;
-      background-color: #e0ece087;
+      background-color: var(--artist-card-bg-color);
       transition: .25s background-color ease-in-out;
       padding: 17px;
 
       &__edit {
-        color: #5f83a1;
+        color: var(--edit-icon-color);
         position: absolute;
         right: 6px;
         top: 6px;
       }
 
       &__delete {
-        color: #be4343;
+        color: var(--delete-icon-color);
         position: absolute;
         right: 8px;
         bottom: 10px;
@@ -74,7 +74,7 @@
       }
 
       &__name {
-        color: #191414FF;
+        color: var(--text-color);
         font-weight: 700;
         font-size: 1rem;
         line-height: 1.5rem;
@@ -91,7 +91,7 @@
         font-size: 14px;
         text-transform: none;
         letter-spacing: normal;
-        color: #646464FF;
+        color: var(--role-name-color);
         background-color: #FFFFFFFF;
         display: inline-block;
         padding: 0 15px;
@@ -100,7 +100,7 @@
       }
 
       &:hover {
-        background-color: #1DB95426;
+        background-color: var(--artist-card-hover-color);
         box-shadow: 0 3px 9px 1px rgb(202 202 202 / 82%);
       }
 

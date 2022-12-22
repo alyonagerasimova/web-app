@@ -4,7 +4,7 @@ import {ArtistService} from "../../../services/artist.service";
 import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {Router} from "@angular/router";
-import { finalize, tap } from "rxjs";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-all-artists',
@@ -18,7 +18,7 @@ export class AllArtistsComponent implements OnInit {
   readonly isAdmin = this.getIsAdmin();
   error: string = '';
   defaultArtistPhoto = "../../../../assets/img/avatar.svg";
-  openFormArtistUrl = [MyRoutes.Root, MyRoutes.CreateArtist];
+  openFormArtistUrl = () => this.router.navigate([MyRoutes.Root, MyRoutes.CreateArtist]);
 
   constructor(private artistService: ArtistService,
               private readonly tokenService: TokenService,

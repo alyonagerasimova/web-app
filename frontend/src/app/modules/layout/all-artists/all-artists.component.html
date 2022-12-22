@@ -1,6 +1,6 @@
 <div class="collections__title">
   <h1 class="collections__title__name">Исполнители</h1>
-  <button *ngIf="isAdmin" class="btn btn-success" [routerLink]="openFormArtistUrl">Добавить</button>
+  <button *ngIf="isAdmin" mat-flat-button color="primary" (click)="openFormArtistUrl()">Добавить</button>
 </div>
 <div *ngIf="isLoading; else content">
   <div class="collections__spinner">
@@ -11,7 +11,8 @@
   <div class="collections__artists">
     <div class="artist" *ngFor="let artist of artistsList; index as i;"
          (click)="getArtistPageUrl(artist.id)">
-      <button mat-icon-button class="artist__edit" (click)="navigateToAristEditForm(artist.id); $event.stopPropagation();">
+      <button mat-icon-button class="artist__edit"
+              (click)="navigateToAristEditForm(artist.id); $event.stopPropagation();">
         <span class="material-symbols-outlined">edit_square</span>
       </button>
 

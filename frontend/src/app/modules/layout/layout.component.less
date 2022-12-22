@@ -7,7 +7,7 @@
   flex: 1;
   height: 100%;
   //background: linear-gradient(rgba(0, 0, 0, .6), rgb(18, 18, 18) 100%);
-  background-color: #fffeff;
+  background-color: (var(--main-bg-color));
   min-height: 863px;
   display: grid;
   position: relative;
@@ -19,7 +19,7 @@
   .header {
     grid-area: header;
     align-content: center;
-    background-color: #fffeff;
+    background-color: var(--main-bg-color);
 
     &__container {
       display: flex;
@@ -32,7 +32,7 @@
         padding: 5px 10px;
 
         &__profile {
-          color: #191414FF;
+          color: var(--text-color);
           padding: 3px 0;
 
           &:hover {
@@ -44,8 +44,8 @@
           font-size: 16px;
           padding: 3px 15px;
           border: none;
-          color: rgba(0, 0, 0, 0.7);
-          background-color: #1DB95433;
+          color: var(--text-color);
+          background-color: var(--auth-btn-bg-color);
           border-radius: 15px;
           margin-left: 20px;
 
@@ -59,11 +59,11 @@
 
   .sidebar {
     grid-area: sidebar;
-    background-color: #673ab7;
-    color: #eeeeee;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
 
     .logo {
-      color: #ffffff;
+      color: var(--logo-color);
       height: 60px;
       padding-left: 20px;
       padding-top: 20px;
@@ -82,7 +82,7 @@
       font-weight: 600;
 
       &:hover {
-        background-color: #1DB95426;
+        background-color: var(--sidebar-hover-color);
         cursor: pointer;
       }
     }

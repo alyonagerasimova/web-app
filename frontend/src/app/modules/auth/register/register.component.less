@@ -71,7 +71,7 @@
 
     &__button {
       width: 100%;
-      background-color: #148A3FFF;
+      background-color: var(--auth-btn-bg-color);
       font-size: 14px;
       border-radius: 500px;
       border: none;
@@ -87,11 +87,11 @@
 
       &:hover {
         color: #FFFFFFFF;
-        background-color: #1DB954FF;
+        background-color: var(--auth-btn-hover-color);
       }
 
       &:disabled {
-        background-color: #056C05FF;
+        background-color: var(--auth-btn-disable-color);
         cursor: not-allowed;
       }
     }
@@ -129,11 +129,11 @@
       margin: 45px 0 10px 0;
 
       a {
-        color: #056C05FF;
+        color: var(--sidebar-bg-color);
         transition: .2s color ease-in-out;
 
         &:hover {
-          color: #0AC90AFF;
+          color: var(--sidebar-hover-color);
         }
       }
     }

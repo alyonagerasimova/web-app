@@ -1,6 +1,6 @@
 <div class="collections__title">
   <h1 class="collections__title__name">Песни</h1>
-  <button *ngIf="isAdmin" class="btn btn-success" (click)="openFormArtistUrl()">Добавить</button>
+  <button *ngIf="isAdmin" mat-flat-button color="primary" (click)="openFormArtistUrl()">Добавить</button>
 </div>
 <div *ngIf="isLoading; else content">
   <div class="collections__spinner">
@@ -20,6 +20,15 @@
         <audio controls preload="none" class="song__audio__controls">
           <source [src]="song.source">
         </audio>
+      </div>
+      <div class="song__buttons">
+        <button mat-icon-button class="song__buttons__edit"
+                (click)="navigateToSongEditForm(song.id); $event.stopPropagation();">
+          <span class="material-symbols-outlined">edit_square</span>
+        </button>
+        <button mat-icon-button class="song__buttons__delete" (click)="deleteSong(song); $event.stopPropagation();">
+          <span class="material-symbols-outlined">delete</span>
+        </button>
       </div>
     </div>
   </div>

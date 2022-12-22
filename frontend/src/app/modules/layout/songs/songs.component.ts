@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from "@angular/router";
+import {Router} from "@angular/router";
 import {Artist, Song} from "../../types";
 import {SongService} from "../../../services/song.service";
 import {TokenService} from "../../../services/token.service";
@@ -41,6 +41,15 @@ export class SongsComponent implements OnInit {
   private getIsAdmin(): boolean {
     return this.tokenService.getUser()?.role === "ROLE_ADMIN";
   }
+
   openFormArtistUrl = () => this.router.navigate([MyRoutes.Root, MyRoutes.CreateSong]);
+
+  deleteSong(song: Song) {
+
+  }
+
+  navigateToSongEditForm(id: string) {
+
+  }
 }
 
