@@ -13,9 +13,9 @@ import {TokenGuard} from "./guards/token.guard";
 import {LayoutComponent} from "./modules/layout/layout.component";
 import {GenresComponent} from "./modules/layout/genres/genres.component";
 import {ArtistComponent} from "./modules/layout/artist/artist.component";
-import {CreateArtistComponent} from "./modules/admin/create-forms/create-artist/create-artist.component";
+import {ArtistFormComponent} from "./modules/admin/create-forms/artist-form/artist-form.component";
 import {AdminGuard} from "./guards/admin.guard";
-import {CreateSongComponent} from "./modules/admin/create-forms/create-song/create-song.component";
+import {SongFormComponent} from "./modules/admin/create-forms/song-form/song-form.component";
 
 const routes: Routes = [
   {path: "", redirectTo: MyRoutes.Welcome, pathMatch: 'full'},
@@ -35,7 +35,12 @@ const routes: Routes = [
           {
             path: MyRoutes.CreateArtist,
             canActivate: [AdminGuard],
-            component: CreateArtistComponent
+            component: ArtistFormComponent
+          },
+          {
+            path: MyRoutes.CreateArtist + "/:id",
+            canActivate: [AdminGuard],
+            component: ArtistFormComponent
           },
           {path: MyRoutes.Artists + "/:id", component: ArtistComponent},
 
@@ -43,7 +48,7 @@ const routes: Routes = [
           {
             path: MyRoutes.CreateSong,
             canActivate: [AdminGuard],
-            component: CreateSongComponent
+            component: SongFormComponent
           },
           {path: MyRoutes.Playlists, component: PlaylistComponent},
           {path: MyRoutes.Home, component: HomeComponent},

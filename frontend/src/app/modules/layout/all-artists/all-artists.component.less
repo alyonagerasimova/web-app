@@ -7,6 +7,12 @@
 }
 
 .collections {
+  &__spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
   &__title {
     display: flex;
     padding-bottom: 16px;
@@ -41,6 +47,20 @@
       background-color: #e0ece087;
       transition: .25s background-color ease-in-out;
       padding: 17px;
+
+      &__edit {
+        color: #5f83a1;
+        position: absolute;
+        right: 6px;
+        top: 6px;
+      }
+
+      &__delete {
+        color: #be4343;
+        position: absolute;
+        right: 8px;
+        bottom: 10px;
+      }
 
       &__img {
         width: 180px;

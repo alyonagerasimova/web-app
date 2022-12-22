@@ -4,6 +4,7 @@ import {ArtistService} from "../../../services/artist.service";
 import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {Router} from "@angular/router";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-all-artists',
@@ -44,5 +45,23 @@ export class AllArtistsComponent implements OnInit {
 
   getArtistPageUrl(id: string) {
     this.router.navigate([MyRoutes.Root, MyRoutes.Artists, id]);
+  }
+
+  navigateToAristEditForm(id: string) {
+    this.router.navigate([MyRoutes.Root, MyRoutes.CreateArtist, id]);
+  }
+
+  deleteArtist(id: string) {
+    this.artistService
+      .deleteArtist(id)
+      .pipe(
+        // switchMap(song => {
+        //   return this.router.navigate([MyRoutes.Root, MyRoutes.Songs]);
+        // }),
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe();
   }
 }

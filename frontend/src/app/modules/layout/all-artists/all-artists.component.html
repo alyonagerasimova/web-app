@@ -2,17 +2,32 @@
   <h1 class="collections__title__name">Исполнители</h1>
   <button *ngIf="isAdmin" class="btn btn-success" [routerLink]="openFormArtistUrl">Добавить</button>
 </div>
-<div class="collections__artists" *ngIf="!isLoading">
-  <div class="artist" *ngFor="let artist of artistsList; index as i;"
-       (click)="getArtistPageUrl(artist.id)">
-    <img *ngIf="artist.photo; else defaultUrl"
-         [src]=[artist.photo]
-         alt="" class="artist__img"/>
-    <ng-template #defaultUrl>
-      <img [src]=defaultArtistPhoto
-           alt="" class="artist__img"/>
-    </ng-template>
-    <h2 class="artist__name">{{artist.artistName}}</h2>
-    <h4 class="artist__role">исполнитель</h4>
+<div *ngIf="isLoading; else content">
+  <div class="collections__spinner">
+    <mat-spinner></mat-spinner>
   </div>
 </div>
+<ng-template #content>
+  <div class="collections__artists">
+    <div class="artist" *ngFor="let artist of artistsList; index as i;"
+         (click)="getArtistPageUrl(artist.id)">
+      <button mat-icon-button class="artist__edit" (click)="navigateToAristEditForm(artist.id)">
+        <span class="material-symbols-outlined">edit_square</span>
+      </button>
+
+      <img *ngIf="artist.photo; else defaultUrl"
+           [src]=[artist.photo]
+           alt="" class="artist__img"/>
+      <ng-template #defaultUrl>
+        <img [src]=defaultArtistPhoto
+             alt="" class="artist__img"/>
+      </ng-template>
+      <h2 class="artist__name">{{artist.artistName}}</h2>
+      <h4 class="artist__role">исполнитель</h4>
+
+      <button mat-icon-button class="artist__delete" (click)="deleteArtist(artist.id)">
+        <span class="material-symbols-outlined">delete</span>
+      </button>
+    </div>
+  </div>
+</ng-template>

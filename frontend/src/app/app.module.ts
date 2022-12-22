@@ -18,11 +18,12 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {AllArtistsComponent} from './modules/layout/all-artists/all-artists.component';
 import {LayoutComponent} from './modules/layout/layout.component';
 import {GenresComponent} from './modules/layout/genres/genres.component';
-import {CreateArtistComponent} from './modules/admin/create-forms/create-artist/create-artist.component';
-import {CreateSongComponent} from './modules/admin/create-forms/create-song/create-song.component';
+import {ArtistFormComponent} from './modules/admin/create-forms/artist-form/artist-form.component';
+import {SongFormComponent} from './modules/admin/create-forms/song-form/song-form.component';
 import {CreateAlbumComponent} from './modules/admin/create-forms/create-album/create-album.component';
 import {CreatePlaylistComponent} from './modules/admin/create-forms/create-playlist/create-playlist.component';
 import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -36,8 +37,8 @@ import {MatButtonModule} from "@angular/material/button";
     AllArtistsComponent,
     LayoutComponent,
     GenresComponent,
-    CreateArtistComponent,
-    CreateSongComponent,
+    ArtistFormComponent,
+    SongFormComponent,
     CreateAlbumComponent,
     CreatePlaylistComponent,],
   imports: [
@@ -52,6 +53,7 @@ import {MatButtonModule} from "@angular/material/button";
     MatGridListModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

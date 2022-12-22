@@ -39,7 +39,7 @@ export type Artist = {
 export type ArtistCreate = {
   artistName: string,
   photo: string,
-  songs: string[]
+  artistId?: string
 }
 
 export type Song = {

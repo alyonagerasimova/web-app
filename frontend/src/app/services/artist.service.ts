@@ -26,38 +26,11 @@ export class ArtistService {
     return this.http.post<Artist>(ARTIST_API, artist);
   }
 
-//   @PostMapping
-//   @PreAuthorize("hasRole('ADMIN')")
-//   public ResponseEntity<?> create(@RequestBody AlbumCreateDto dto) {
-//   try {
-//   if (dto.getId() != null) {
-//   dto.setId(null);
-// }
-// return ResponseEntity.ok(this.albumService.save(dto));
-// } catch (Exception ex) {
-//   ex.printStackTrace();
-//   return ResponseEntity.badRequest().body(ex.getMessage());
-// }
-// }
-//
-// @PutMapping("/{id}")
-// @PreAuthorize("hasRole('ADMIN')")
-// public AlbumDto update(@PathVariable String id, @RequestBody AlbumCreateDto dto) {
-//   dto.setId(id);
-//   return albumService.save(dto);
-// }
-  //
-  // @PutMapping("/{id}")
-  // @PreAuthorize("hasRole('ADMIN')")
-  // public ArtistDto update(@PathVariable String id,@RequestBody ArtistDto dto) {
-  //   dto.setId(id);
-  //   return artistService.save(dto);
-  // }
-  //
-  // @DeleteMapping("/{id}")
-  // @PreAuthorize("hasRole('ADMIN')")
-  // public void delete(@PathVariable String id) {
-  //   artistService.delete(id);
-  // }
+  updateArtist(artist: ArtistCreate, id: string): Observable<Artist> {
+    return this.http.put<Artist>(`${ARTIST_API}/${id}`, artist);
+  }
 
+  deleteArtist(id: string) {
+    return this.http.delete(`${ARTIST_API}/${id}`);
+  }
 }

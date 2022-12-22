@@ -5,7 +5,6 @@ export enum MyRoutes {
   Register = 'register',
   Home = 'home',
   Profile = 'profile',
-  Admin = 'admin',
   Artists = 'artists',
   Songs = 'songs',
   Playlists = 'playlists',

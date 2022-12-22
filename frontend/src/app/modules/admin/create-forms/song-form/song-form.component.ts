@@ -10,10 +10,10 @@ import {GenreService} from "../../../../services/genre.service";
 
 @Component({
   selector: 'app-create-song',
-  templateUrl: './create-song.component.html',
-  styleUrls: ['./create-song.component.less']
+  templateUrl: './song-form.component.html',
+  styleUrls: ['./song-form.component.less']
 })
-export class CreateSongComponent implements OnInit {
+export class SongFormComponent implements OnInit {
 
   isLoading = true;
   private artistId: string | null | undefined;
