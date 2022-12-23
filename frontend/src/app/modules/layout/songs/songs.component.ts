@@ -16,7 +16,7 @@ export class SongsComponent implements OnInit {
   isLoading = true;
   songsList: Song[] = [];
   readonly isAdmin = this.getIsAdmin();
-  defaultImg = "../../../../assets/img/song_default.jpg";
+  defaultImg = "https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/e5/fc/15/e5fc1577-71e0-b2c0-3579-5859103e0655/cover.jpg/600x600bb.jpg";
   artistName: string[] = [];
 
   constructor(private songService: SongService,
