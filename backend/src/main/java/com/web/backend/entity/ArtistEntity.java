@@ -27,7 +27,7 @@ public class ArtistEntity {
     @Column(name = "photo")
     private String photo;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", cascade = {CascadeType.REMOVE}, orphanRemoval = true)
     private List<SongEntity> songs;
 
     @OneToMany(mappedBy = "artist")

@@ -11,7 +11,7 @@
   <div class="collections__artists">
     <div class="artist" *ngFor="let artist of artistsList; index as i;"
          (click)="getArtistPageUrl(artist.id)">
-      <button mat-icon-button class="artist__edit"
+      <button *ngIf="isAdmin" mat-icon-button class="artist__edit"
               (click)="navigateToAristEditForm(artist.id); $event.stopPropagation();">
         <span class="material-symbols-outlined">edit_square</span>
       </button>
@@ -26,7 +26,8 @@
       <h2 class="artist__name">{{artist.artistName}}</h2>
       <h4 class="artist__role">исполнитель</h4>
 
-      <button mat-icon-button class="artist__delete" (click)="deleteArtist(artist); $event.stopPropagation();">
+      <button *ngIf="isAdmin" mat-icon-button class="artist__delete"
+              (click)="deleteArtist(artist); $event.stopPropagation();">
         <span class="material-symbols-outlined">delete</span>
       </button>
     </div>

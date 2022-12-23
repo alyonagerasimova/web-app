@@ -4,7 +4,8 @@ import {ArtistService} from "../../../services/artist.service";
 import {TokenService} from "../../../services/token.service";
 import {MyRoutes} from "../../my-routes";
 import {Router} from "@angular/router";
-import {tap} from "rxjs";
+import {finalize, tap} from "rxjs";
+import {SongService} from "../../../services/song.service";
 
 @Component({
   selector: 'app-all-artists',
@@ -19,9 +20,11 @@ export class AllArtistsComponent implements OnInit {
   error: string = '';
   defaultArtistPhoto = "../../../../assets/img/avatar.svg";
   openFormArtistUrl = () => this.router.navigate([MyRoutes.Root, MyRoutes.CreateArtist]);
+  private songsName: string[] = [];
 
   constructor(private artistService: ArtistService,
               private readonly tokenService: TokenService,
+              private readonly songService: SongService,
               private readonly router: Router) {
   }
 
@@ -52,11 +55,22 @@ export class AllArtistsComponent implements OnInit {
   }
 
   deleteArtist(artist: Artist) {
-    this.artistService.deleteArtist(artist.id)
+    this.songService.getSongs()
       .pipe(
-        tap(() => {
-          this.artistsList = this.artistsList.filter(singer => singer !== artist);
+        tap((sings) => {
+          this.songsName = sings.filter(song => song.artistId === artist.id).map(song => song?.songName);
+        }),
+        finalize(() => {
+          if (confirm("Вы действительно хотите удалить " + artist.artistName + ": " + this.songsName)) {
+            this.artistService.deleteArtist(artist.id)
+              .pipe(
+                tap(() => {
+                  this.artistsList = this.artistsList.filter(singer => singer !== artist);
+                })
+              ).subscribe();
+          }
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 }

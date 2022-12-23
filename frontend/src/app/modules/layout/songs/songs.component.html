@@ -21,7 +21,7 @@
           <source [src]="song.source">
         </audio>
       </div>
-      <div class="song__buttons">
+      <div *ngIf="isAdmin" class="song__buttons">
         <button mat-icon-button class="song__buttons__edit"
                 (click)="navigateToSongEditForm(song.id); $event.stopPropagation();">
           <span class="material-symbols-outlined">edit_square</span>
