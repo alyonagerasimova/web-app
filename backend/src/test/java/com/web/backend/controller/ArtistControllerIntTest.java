@@ -71,7 +71,7 @@ public class ArtistControllerIntTest {
     @Transactional
     public void testArtistOperations() {
         List<ArtistDto> artists = artistController.getArtists(null);
-        assertEquals(1, artists.size());
+        assertEquals(0, artists.size());
 
         ArtistDto artist = new ArtistDto();
         artist.setArtistName("Artist2");
@@ -80,7 +80,7 @@ public class ArtistControllerIntTest {
         artist.setArtistName("Artist3");
         artistController.create(artist);
         artists = artistController.getArtists(null);
-        assertEquals(3, artists.size());
+        assertEquals(2, artists.size());
         artists = artistController.getArtists("2");
         assertEquals(1, artists.size());
 

@@ -76,7 +76,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.parent.basedir}/backend/src/main/resources/static
+                            <outputDirectory>${project.parent.basedir}/backend/src/main/resources/static/
                             </outputDirectory>
                             <resources>
                                 <resource>
@@ -104,7 +104,7 @@
                         </goals>
                         <configuration>
                             <!-- Sets the path to the file which contains the execution data. -->
-                            <destFile>${project.parent.basedir}/backend/src/main/resources/jacoco.exec</destFile>
+                            <destFile>${project.build.directory}/jacoco.exec</destFile>
                             <!--Sets the name of the property containing the settings for JaCoCo runtime agent.-->
                             <propertyName>surefireArgLine</propertyName>
                         </configuration>
@@ -118,10 +118,9 @@
                         </goals>
                         <configuration>
                             <!-- Sets the path to the file which contains the execution data. -->
-                            <dataFile>${project.parent.basedir}/backend/src/main/resources/jacoco.exec</dataFile>
+                            <dataFile>${project.build.directory}/jacoco.exec</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${project.parent.basedir}/backend/src/main/resources/jacoco
-                            </outputDirectory>
+                            <outputDirectory>${project.build.directory}/jacoco</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
@@ -132,7 +131,7 @@
                         </goals>
                         <configuration>
                             <!-- Sets the path to the file which contains the execution data. -->
-                            <destFile>${project.parent.basedir}/backend/src/main/resources/jacoco-it.exec</destFile>
+                            <destFile>${project.build.directory}/jacoco-it.exec</destFile>
                             <!--
                                 Sets the name of the property containing the settings
                                 for JaCoCo runtime agent.
@@ -152,10 +151,9 @@
                         </goals>
                         <configuration>
                             <!-- Sets the path to the file which contains the execution data. -->
-                            <dataFile>${project.parent.basedir}/backend/src/main/resources/jacoco-it.exec</dataFile>
+                            <dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
                             <!-- Sets the output directory for the code coverage report. -->
-                            <outputDirectory>${project.parent.basedir}/backend/src/main/resources/jacoco-it
-                            </outputDirectory>
+                            <outputDirectory>${project.build.directory}/jacoco-it</outputDirectory>
                         </configuration>
                     </execution>
                     <execution>
